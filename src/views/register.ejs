@@ -1,0 +1,26 @@
+<%- include('inc/head.ejs')%>
+
+<header id="header">
+    <div class="hd-tit">
+        <a href="/">
+            <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
+        </a>
+    </div>
+</header>
+
+<div class="header-hello">
+    <h1> Register </h2>
+</div>
+
+<div id="container">
+    <!-- 입력창 버튼 -->
+    <form id="signUpform" class="btn-wrap" method="post" action="#" enctype="multipart/form-data" >
+        <input class="btn-comn signup-btn btn-line" placeholder="Id : Up to 10 characters" name="user_id">
+        <input class="btn-comn signup-btn btn-line" placeholder="Nick Name : Up to 8 characters" name="user_nick">
+        <input class="btn-comn signup-btn btn-line" placeholder="Password : Up to 10 characters" name="user_pw">
+        <button class="btn-comn login-btn">회원가입</button>
+    </form>
+    <!-- 로고 -->
+    <img src="/public/images/imagesK/miniLogo.svg" alt="영어로고" class="logo-txt">
+</div>
+<%- include('inc/tail.ejs')%>

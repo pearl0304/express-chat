@@ -7,14 +7,16 @@
 
     <div id="index-wrap">
         <!-- 입력창 버튼 -->
-        <form id="loginform" class="btn-wrap" method="post">
-            <input class="btn-comn signup-btn btn-line" type="text" name="user_id" placeholder="ID">
-            <input class="btn-comn signup-btn btn-line" type="text" name="user_pw" placeholder="Password">
+        <form id="loginform" class="btn-wrap" method="post" action="/user">
+            <input class="btn-comn signup-btn btn-line" type="text" name="user_id" placeholder="ID" maxlength="10">
+            <input class="btn-comn signup-btn btn-line" type="text" name="user_pw" placeholder="Password" maxlength="10">
             <button class="btn-comn login-btn" name="login-btn" type="submit">LOG IN</button>
         </form>
+
+        <a class="info-reg" href="/user/register">아직 회원이 아니신가요?</a>
+        <img src="/public/images/imagesK/miniLogo.svg" alt="영어로고" class="logo-txt">
     </div>
 
 
-<%- include('inc/tabbar.ejs')%>
 <script src="/public/js/main.js"></script>
 <%- include('inc/tail.ejs')%>

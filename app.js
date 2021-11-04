@@ -1,5 +1,5 @@
 import express from "express"
-import MongoClient from "./mongodb/config.js"
+import MongoClient from "./modles/config.js"
 import router from "./routers/main_router.js"
 
 class App {
