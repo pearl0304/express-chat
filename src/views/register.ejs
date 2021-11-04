@@ -24,23 +24,5 @@
     <img src="/public/images/imagesK/miniLogo.svg" alt="영어로고" class="logo-txt">
 </div>
 
-<script>
-
-$(function(){checkSignForm()})
-
-
-function checkSignForm(){
-    $("#signUpform").on("submit",function(){
-        const user_id = $("input[name=user_id]").val().length
-        const user_nick = $("input[name=user_nick]").val().length
-        const user_pw = $("input[name=user_pw]").val().length
-
-        if(user_id == 0 || user_pw ==0){
-            alert('Please enter your all login infomation')
-            return false
-        }     
-    })
-}
-
-</script>
+<script src="/public/js/register.js"></script>
 <%- include('inc/tail.ejs')%>
