@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/* red hot display font */
+@font-face {
+    font-family: 'RedHatDisplay';
+    font-style: normal;
+    font-weight: 400;
+    src: local('RedHatDisplay'),
+    url('RedHatDisplay-Regular.woff') format('woff'),
+    url('RedHatDisplay-Regular.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'RedHatDisplay';
+    font-style: normal;
+    font-weight: 500;
+    src: local('RedHatDisplay'),
+    url('RedHatDisplay-Medium.woff') format('woff'),
+    url('RedHatDisplay-Medium.ttf') format('truetype')
+}
+
+
+@font-face {
+    font-family: 'RedHatDisplay';
+    font-style: normal;
+    font-weight: 700;
+    src: local('RedHatDisplay'),
+    url('RedHatDisplay-Bold.woff') format('woff'),
+    url('RedHatDisplay-Bold.ttf') format('truetype')
+}
+
+
+@font-face {
+    font-family: 'RedHatDisplay';
+    font-style: normal;
+    font-weight: 900;
+    src: local('RedHatDisplay'),
+    url('RedHatDisplay-Black.woff') format('woff'),
+    url('RedHatDisplay-Black.ttf') format('truetype')
+}
+

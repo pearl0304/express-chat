@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>:: Chat with Express-socket.io</title>
-</head>
-<body>
-    <h1>main page</h1>
-</body>
-</html>
+<%- include('inc/head.ejs')%>
+
+
+    <div class="header-hello">
+        <h1> Hello :) </h2>
+    </div>
+
+    <div id="index-wrap">
+        <!-- 입력창 버튼 -->
+        <form id="loginform" class="btn-wrap" method="post" action="/process/login_process.php">
+            <input class="btn-comn signup-btn btn-line" type="text" name="user_id" placeholder="ID">
+            <input class="btn-comn signup-btn btn-line" type="text" name="user_pw" placeholder="Password">
+            <button class="btn-comn login-btn">LOG IN</button>
+        </form>
+    </div>
+
+
+<%- include('inc/tabbar.ejs')%>
+<script src="/public/js/main.js"></script>
+<%- include('inc/tail.ejs')%>

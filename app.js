@@ -9,6 +9,8 @@ class App {
 
         this.getDbConfig()
         this.setViewEngine()
+        this.setMiddleware()
+        this.setStatic()
         this.getRouters()
     }
 
@@ -18,6 +20,16 @@ class App {
         this.app.set('views','src/views')
         this.app.set('view engine', 'ejs')
     }
+    setMiddleware(){
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extended:false}))
+    }
+
+    setStatic(){
+        this.app.use('/public',express.static('src/public'))
+        this.app.use('/uploads',express.static('/uploads'))
+    }
+
     getRouters(){
         this.app.use(router)
     }
