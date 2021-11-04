@@ -14,13 +14,33 @@
 
 <div id="container">
     <!-- 입력창 버튼 -->
-    <form id="signUpform" class="btn-wrap" method="post" action="#" enctype="multipart/form-data" >
+    <form id="signUpform" class="btn-wrap" method="post" action="/register" enctype="multipart/form-data" >
         <input class="btn-comn signup-btn btn-line" placeholder="Id : Up to 10 characters" name="user_id">
         <input class="btn-comn signup-btn btn-line" placeholder="Nick Name : Up to 8 characters" name="user_nick">
         <input class="btn-comn signup-btn btn-line" placeholder="Password : Up to 10 characters" name="user_pw">
-        <button class="btn-comn login-btn">회원가입</button>
+        <button class="btn-comn login-btn">Register</button>
     </form>
     <!-- 로고 -->
     <img src="/public/images/imagesK/miniLogo.svg" alt="영어로고" class="logo-txt">
 </div>
+
+<script>
+
+$(function(){checkSignForm()})
+
+
+function checkSignForm(){
+    $("#signUpform").on("submit",function(){
+        const user_id = $("input[name=user_id]").val().length
+        const user_nick = $("input[name=user_nick]").val().length
+        const user_pw = $("input[name=user_pw]").val().length
+
+        if(user_id == 0 || user_pw ==0){
+            alert('Please enter your all login infomation')
+            return false
+        }     
+    })
+}
+
+</script>
 <%- include('inc/tail.ejs')%>

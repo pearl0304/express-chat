@@ -1,9 +1,8 @@
 $(function(){
-    checkform()
+    checkLoginForm()
 })
 
-function checkform(){
-
+function checkLoginForm(){
     $("#loginform").on("submit",function(){
         const user_id = $("input[name=user_id]").val().length
         const user_pw = $("input[name=user_pw]").val().length
@@ -14,4 +13,8 @@ function checkform(){
         }     
     })
 }
+
+
+
+
 
