@@ -8,7 +8,7 @@ userRouter.get('/',userController.getUserFeed)
 userRouter.get('/register',userController.getRegitser)
 userRouter.post('/register',userController.postRegister)
 
-userRouter.get('/feed:id', (req,res)=> {res.send('피드')})
+userRouter.get('/feed:user_id', (req,res)=> {res.render('feed')})
 
 
 export default userRouter

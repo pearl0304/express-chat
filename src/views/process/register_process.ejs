@@ -1,0 +1,22 @@
+<%if (result == 'DUPLICATE_ID'){%>
+    <script>
+        alert('This ID is already taken')
+        location.href='/user/register'
+    </script>
+<%}%>
+
+
+<%if (result == 'ERROR'){%>
+    <script>
+        alert('An error has occurred')
+        location.href='/user/register'
+    </script>
+<%}%>
+
+<% if (result == "SUCCESS"){%>
+    <script>
+        location.href='/user/feed:<%=user_id%>'
+    </script>
+<%}%>
+
+
