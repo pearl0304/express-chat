@@ -1,17 +1,44 @@
+import { insertUser } from "../modles/user.js"
 export const userController = {
 
-    // @post 
-    checkUser:(req,res)=>{
-        res.send('post 처리')
+    // main - login
+    checkUser:async(req,res)=>{
+        try{
+            await res.send('loin post 처리')
+        }catch(e){
+            console.log(e)
+        }
+    },
+    getUserFeed:async(req,res)=>{
+        try{        
+            await res.render('feed')
+        }catch(e){
+            console.log(e)
+        } 
     },
 
-    // @get
-    getUserFeed:(req,res)=>{
-        res.render('feed')
-    
+    // register
+    getRegitser:async(req,res)=>{
+        try{
+            await res.render('register')  
+        }catch(e){
+            console.log(e)
+        }
     },
-    getRegitser:(req,res)=>{
-        res.render('register')  
-    },
+    postRegister:async(req,res)=>{
+        try{
+            const data = {
+                user_id : req.body.user_id,
+                user_nick : req.body.user_nick,
+                user_pw : req.body.user_pw,
+            }
+            insertUser(data)
+
+            res.send('문제점을 찾았슴돠')
+        }catch(e){
+            console.log(e)
+        }
+
+    }
     
 }
