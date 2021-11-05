@@ -1,6 +1,18 @@
 $(function(){
+    validation()
     checkLoginForm()
 })
+
+function validation(){
+    const pattern_spc = /[~!@#$%^&*()+|<>?:{}]/; 
+    const pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+    $("input[name=user_id]").keyup(()=>{
+        const user_id = $("input[name=user_id]").val()
+        if(pattern_spc.test(user_id)){alert('Special characters cannot be used'); return false}
+        if(pattern_kor.test(user_id)){alert('Please enter your ID in English'); return false}
+    })
+}
 
 function checkLoginForm(){
     $("#loginform").on("submit",function(){

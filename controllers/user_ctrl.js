@@ -25,6 +25,7 @@ export const userController = {
             console.log(e)
         }
     },
+
     postRegister:async(req,res)=>{
         try{
             const data = {
@@ -33,12 +34,12 @@ export const userController = {
                 user_pw : req.body.user_pw,
             }
             insertUser(data)
+            res.render('feed')
 
-            res.send('문제점을 찾았슴돠')
+
         }catch(e){
             console.log(e)
         }
-
     }
     
 }

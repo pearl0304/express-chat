@@ -1,4 +1,18 @@
-$(function(){checkSignForm()})
+$(function(){
+    validation()
+    checkSignForm()
+})
+
+function validation(){
+    const pattern_spc = /[~!@#$%^&*()+|<>?:{}]/; 
+    const pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+    $("input[name=user_id]").keyup(()=>{
+        const user_id = $("input[name=user_id]").val()
+        if(pattern_spc.test(user_id)){alert('Special characters cannot be used'); return false}
+        if(pattern_kor.test(user_id)){alert('Please enter your ID in English'); return false}
+    })
+}
 
 function checkSignForm(){
     $("#signUpform").on("submit",function(){
@@ -23,10 +37,5 @@ function checkSignForm(){
     })
 }
     
-function vaildation(){
-        const pattern_num = /[0-9]/;
-        const pattern_eng = /[a-zA-Z]/;	
-        const pattern_spc = /[~!@#$%^&*()+|<>?:{}]/; 
-        const pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-}
+
 

@@ -1,6 +1,9 @@
 import express from "express"
+import helmet from "helmet"
+import csp from "helmet-csp"
 import MongoClient from "./modles/config.js"
 import router from "./routers/main_router.js"
+
 
 class App {
     constructor(){
@@ -23,6 +26,7 @@ class App {
     setMiddleware(){
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:false}))
+        this.app.use(helmet())        
     }
 
     setStatic(){
