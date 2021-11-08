@@ -26,7 +26,6 @@ class App {
         this.app.use(helmet({
             contentSecurityPolicy: false,
         }))
-;
     
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:false}))

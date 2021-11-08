@@ -20,6 +20,37 @@
     </script>
 <%}%>
 
+<%if (result == 'EMPTY_REGISTER_INFO'){%>
+    <script>
+        alert('Please input your register infomation')
+        location.href='/user/register'
+    </script>
+<%}%>
+
+
+<%if (result == 'EMPTY_LOGIN_INFO'){%>
+    <script>
+        alert('Please input your login infomation')
+        location.href='/user'
+    </script>
+<%}%>
+
+<%if (result == 'IS_NOT_USER'){%>
+    <script>
+        alert('There is no registerd Id. Please check the ID')
+        location.href='/'
+    </script>
+<%}%>
+
+
+<%if (result == 'WRONG_PW'){%>
+    <script>
+        alert('The password you enter is wrong. Please check your password')
+        location.href='/'
+    </script>
+<%}%>
+
+
 <% if (result == "SUCCESS"){%>
     <script>
         location.href='/user/feed:<%=user_id%>'
