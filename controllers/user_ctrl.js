@@ -1,4 +1,4 @@
-import { insertUser } from "../modles/user.js"
+import {checkDuplicteID,checkDuplicteNick,insertUser } from "../modles/user.js"
 import jwt from "jsonwebtoken"
 export const userController = {
 
@@ -36,7 +36,20 @@ export const userController = {
             }
 
             if(data){
-                insertUser(data)
+
+                // Duplicate
+                const resultDuplicatedID = await checkDuplicteID(data)
+                if(resultDuplicatedID){
+                    res.render('process/register_process',{result:"DUPLICATE_ID"})
+                }
+    
+                const resultDupilcatedNick = await checkDuplicteNick(data)
+                if(resultDupilcatedNick){
+                    res.render('process/register_process',{result:"DUPLICATE_NICK"})
+                }
+
+                // insert User
+                await insertUser(data)
 
                 // create token
                 const created_token = jwt.sign(
@@ -50,20 +63,14 @@ export const userController = {
                 )
                 console.log('token check: ', created_token);
     
-                // save a token in cookie
-                // res.cookie('jwtToken',created_token);
-                // console.log('register token save complete!');
+                //save a token in cookie
+                res.cookie('jwtToken',created_token);
+                console.log('register token save complete!');
                 res.render('process/register_process', {result : "SUCCESS", user_id:data['user_id']})
                 return;
             }else{
                 res.render('process/register_process', { result: "ERROR" });    
             }
-
-
-            
-
-           
-
 
         }catch(e){
             console.log(e)

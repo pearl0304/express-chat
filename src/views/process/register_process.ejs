@@ -5,6 +5,13 @@
     </script>
 <%}%>
 
+<%if (result == 'DUPLICATE_NICK'){%>
+    <script>
+        alert('This NICK NAME is already taken')
+        location.href='/user/register'
+    </script>
+<%}%>
+
 
 <%if (result == 'ERROR'){%>
     <script>
