@@ -6,8 +6,16 @@
 }
 #header .hd-tit {
     margin-top: 5px;
+    display: flex
 }
 
+.phto_h2{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.back-ico{
+    margin-top: 6px;
+}
 
 /* tabbar */
 .tab-bar{

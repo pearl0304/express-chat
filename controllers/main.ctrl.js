@@ -2,8 +2,6 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 dotenv.config()
 
-
-
 export const mainController = {
     verifyToken : async(req,res,next)=>{ 
 
@@ -17,7 +15,8 @@ export const mainController = {
                 req.body.usreData = tokenData
                 res.render('process/register_process',{result : "SUCCESS", user_id : tokenData['user_id']})
                 next()
-            }else{
+            } 
+            else{
                 res.render("main")
             }
         }catch(e){

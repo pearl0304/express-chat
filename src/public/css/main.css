@@ -373,10 +373,11 @@ ul.tabs-ico li.current{
 /* upload */
 .upload-wrap{
     flex:1;
-    margin: 16px;
+    margin: 34px 16px 16px 16px;
 }
 .upload-btn{
     text-align: center;
+    margin-top: 25px;
     margin-bottom: 16px;
 }
 

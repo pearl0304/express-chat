@@ -1,0 +1,37 @@
+<%- include('inc/head.ejs')%>
+
+<header id="header" class="hd-line">
+    <div class="hd-tit">
+        <a href="/">
+            <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
+        </a>
+        <!-- tit -->
+        <h2 class="phto_h2">새 게시물</h2>
+    </div>
+</header>
+
+<div class="upload-wrap">
+
+    <!-- select before -->
+    <form name="fileUpload" method="post" action="/feed/photo" enctype="multipart/form-data">
+        <div class="upload-select">
+
+            <input type="file" name="imgUpload[]" id="imgUpload" multiple/>
+            <div class="cloud">
+                <p>
+                    <img src="/public/images/imagesK/cloud.svg" alt="클라우드" >
+                </p>
+                <span>Select Images</span>
+            </div>
+        </div>
+
+        <div class="upload-btn">
+            <button class="upload-next" type="submit" name="submit">NEXT</button>
+        </div>
+    </form>
+</div>
+
+
+
+<%- include('inc/tabbar.ejs')%>
+<%- include('inc/tail.ejs')%>
