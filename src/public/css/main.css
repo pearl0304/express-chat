@@ -95,23 +95,17 @@ input#avatar{
 
 
 /* feed */
-#feed-wrap{}
-#feed-wrap h2{
-    font-size: 20px;
-    flex:1;
-    justify-content: flex-start;
-    text-align: left;
-}
+#feed-wrap {}
 
-.ntc-fixed{position:relative;}
+.ntc-fixed{position:fixed; right: 20px}
 .ntc-count{
     width: 18px;
     height: 18px;
     line-height: 18px;
     font-weight: 500;
     position: absolute;
-    top: -5px;
-    right: 0;
+    top: -6px;
+    right: -10px;
     color:#fff;
     font-size:11px;
     text-align: center;
@@ -119,9 +113,7 @@ input#avatar{
     border-radius: 50%;
 }
 
-.post{
-
-}
+.post{margin:0px 10px;}
 .post::after{
     content:"";
     display:block;

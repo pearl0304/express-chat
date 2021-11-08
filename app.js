@@ -2,7 +2,7 @@ import express from "express"
 import helmet from "helmet"
 import MongoClient from "./modles/config.js"
 import router from "./routers/main_router.js"
-import csp from "helmet-csp"
+import cookeParser from "cookie-parser"
 
 class App {
     constructor(){
@@ -27,6 +27,7 @@ class App {
             contentSecurityPolicy: false,
         }))
     
+        this.app.use(cookeParser())
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:false}))
     }

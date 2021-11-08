@@ -1,0 +1,23 @@
+@media screen and (max-width:768px){ /* 최대 768px까지 모바일view */
+    /* setting 초기화 */
+    body{min-width:auto;}
+
+}
+
+/*아이폰5 그외 작은사이즈*/
+@media screen and (max-width:320px){
+    /* login,signup page button,input */
+    .btn-comn{width:300px;}
+    .btn-line{}
+
+
+    /* feed */
+    .feed-con{
+    }
+    .post-img{
+        /* width: 288px; */
+    }
+    .post-img>div{
+        object-fit: cover;
+    }
+}

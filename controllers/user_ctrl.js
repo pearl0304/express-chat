@@ -2,22 +2,6 @@ import {checkDuplicteID,checkDuplicteNick,insertUser,login } from "../modles/use
 import jwt from "jsonwebtoken"
 export const userController = {
 
-    // main - login
-    checkUser:async(req,res)=>{
-        try{
-            await res.send('loin post 처리')
-        }catch(e){
-            console.log(e)
-        }
-    },
-    getUserFeed:async(req,res)=>{
-        try{        
-            await res.render('feed')
-        }catch(e){
-            console.log(e)
-        } 
-    },
-
     // register
     getRegitser:async(req,res)=>{
         try{
@@ -48,7 +32,7 @@ export const userController = {
                 const resultDupilcatedNick = await checkDuplicteNick(data)
                 if(resultDupilcatedNick){
                     res.render('process/register_process',{result:"DUPLICATE_NICK"})
-                    return fa
+                    return false
                 }
 
                 // insert User
@@ -68,6 +52,8 @@ export const userController = {
     
                 //save a token in cookie
                 res.cookie('jwtToken',created_token);
+                req.body.userData={user_id: data['user_id'], user_nick: data['user_nick']}
+                req.statusResult = 'Login Success'
                 console.log('register token save complete!');
                 res.render('process/register_process', {result : "SUCCESS", user_id:data['user_id']})
                 return;
@@ -116,10 +102,11 @@ export const userController = {
 
                     //save a token in cookie
                     res.cookie('jwtToken',created_token);
-                    console.log('register token save complete!');
+                    req.body.userData={user_id: data['user_id'], user_nick: data['user_nick']}
+                    req.statusResult = 'Login Success'
+                    console.log('register token save complete!')
                     res.render('process/register_process', {result : "SUCCESS", user_id:data['user_id']})
                     return;
-
                 }else{
                     res.render('process/register_process', { result: "WRONG_PW" })
                 }

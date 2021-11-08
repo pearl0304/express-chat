@@ -1,5 +1,72 @@
 <%- include('inc/head.ejs')%>
 
-<h1>user Feed</h1>
+<!-- 피드전체 -->
+<div id="feed-wrap">
+    <!-- header -->
+    <header id="header">
+        <div class="hd-line">
+            <!-- 알림 icon -->
+            <a href="#" class="ntc-fixed">
+                <img src="/public/images/imagesK/bell.svg" alt="알림 아이콘" class="bell-ico">
+                <!-- 알림 개수 -->
+                <div class="ntc-count">
+                    <span>6</span>
+                </div>
+            </a>
+        </div>
+    </header>
 
+    <!-- content-->
+        <div class="post">
+            <!-- 유저 정보 -->
+            <div class="post-hd">
+                <div class="user-img">
+                    <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                </div>
+                <div class="user-prf">
+                    <h4>Comets_joy</h4>
+                    <p class="time">5분전</p>
+                </div>
+                <!-- 제어 및 설정 ico -->
+                <div class="control">
+                    <a href="#">
+                        <img src="/public/images/imagesK/more.svg" alt="설정제어버튼">
+                    </a>
+                </div>
+            </div>
+
+            <!-- 게시물 내용 -->
+            <div class="post-bd">
+                <!-- 이미지 -->
+                <div class="post-img">
+                    <div><img class="cover" src="http://placehold.it/500x500" alt="게시물이미지"></div>
+                    <div><img class="cover" src="http://placehold.it/600x400" alt="게시물이미지"></div>
+                    <div><img class="cover" src="http://placehold.it/750x300" alt="게시물이미지"></div>
+                </div>
+
+                <!-- 본문 -->
+                <div class="post-txt">게시물 내용이 나오는 곳 입니다...</div>
+                <span class="more">
+                        <a href="#">
+                            더 보기
+                        </a>
+                    </span>
+                <ul class="post-ft">
+                    <li class="comment">
+                        <a href="#">
+                            <img src="/public/images/imagesK/comment.svg">
+                            <span>4</span>
+                        </a>
+                    </li>
+                    <li class="like">
+                        <a href="#">
+                            <img src="/public/images/imagesK/heart.svg">
+                            <span>160</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>            
+        </div>
+
+<%- include('inc/tabbar.ejs')%>
 <%- include('inc/tail.ejs')%>
