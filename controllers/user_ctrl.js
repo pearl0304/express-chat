@@ -7,7 +7,7 @@ export const userController = {
         try{
             await res.render('register')  
         }catch(e){
-            console.log(e)
+            console.error(e)
         }
     },
 
@@ -62,7 +62,7 @@ export const userController = {
             }
 
         }catch(e){
-            console.log(e)
+            console.error(e)
         }
     },
 
@@ -117,7 +117,7 @@ export const userController = {
             
 
         }catch(e){
-            console.log(e)
+            console.error(e)
         }
     },
 
@@ -125,12 +125,12 @@ export const userController = {
 
     },
 
-    getFeed : (req,res)=>{
+    getFeed : async(req,res)=>{
         try{
             res.render('feed')
         }
        catch(e){
-           console.log(e)
+           console.error(e)
        }
     }    
 }
