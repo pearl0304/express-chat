@@ -1,3 +1,4 @@
+import { insertImages } from "../modles/feed.js"
 export const feedController = {
 
     getphoto : async(req,res)=>{
@@ -8,9 +9,15 @@ export const feedController = {
         }
         
     },
-    postphoto : (req,res)=>{
+    imageUpload : async(req,res)=>{
         try{
-            res.send('사진 업로드 처리')
+
+            const user_id= req.body.userData['user_id']
+            const {files} = req;
+
+            console.log(files)
+           // await insertImages(data)
+
         }catch(e){
             console.error(e)
         }

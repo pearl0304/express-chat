@@ -28,12 +28,31 @@ export const mainController = {
             const tokenData = jwt.verify(token,secretKey)
             
             if(tokenData){
-                req.body.usreData = tokenData
+                req.body.userData = tokenData
                 res.render('process/register_process',{result : "SUCCESS", user_id : tokenData['user_id']})
             }
         }catch(e){
             console.error(e)
+            res.render("main")
+        }  
+    },
+    getTokendata : async (req,res,next)=>{
+        try{
+            const token = req.cookies['jwtToken']
+            const secretKey = process.env.SECRET_CODE
+            const tokenData = jwt.verify(token,secretKey)
+
+            if(token){
+                req.body.userData = tokenData
+                next()
+            }else{
+                res.render("main")
+                next()
+            }
+
+        }catch(e){
+            console.error(e)
+            res.render("main")
         }
-    
     }
 }
