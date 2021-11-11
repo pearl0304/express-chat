@@ -13,11 +13,19 @@ export const feedController = {
         try{
 
             const user_id= req.body.userData['user_id']
+            
             const {files} = req;
-
-            console.log(files)
-           // await insertImages(data)
-
+            const fileNames = [];
+            for (const key in files) {
+                if (Object.hasOwnProperty.call(files, key)) {
+                    const element = files[key];
+                    const fileName = element.filename  
+                    fileNames.push(fileName)               
+                }
+            }
+            res.render('upload',{
+                fileNames : fileNames,
+            })
         }catch(e){
             console.error(e)
         }

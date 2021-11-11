@@ -9,12 +9,9 @@ async function getImagesColletion(){
 export async function insertImages(data){
     console.log('modles!')
    // const imagesCollection = await getImagesColletion()
-
-
-
     console.log(data)
 
-    const user_id = data['user_id']
+
 
 
 

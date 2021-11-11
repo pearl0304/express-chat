@@ -1,0 +1,35 @@
+<%- include('inc/head.ejs')%>
+
+<header id="header">
+    <div class="hd-tit">
+        <a href="#">
+            <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
+        </a>
+        <!-- tit -->
+        <h2 class="phto_h2">Write</h2>
+    </div>
+</header>
+
+<div class="upload">
+    <div class="post-img post-slide">
+        <%for (let i=0; i<fileNames.length; i++){%>
+        <div class="img-box"  img-name=<%=fileNames[i]%>>
+            <img class="cover" src="/uploads/<%=fileNames[i]%>" alt="게시물이미지">
+            <button class="delete-btn" type="button" img-name=<%=fileNames[i]%>>삭제버튼</button>
+        </div>
+        <%}%>
+    </div>
+    <!-- 게시글 입력창 -->
+    <div class="upload-txt">
+        <textarea class="autosize" placeholder="Write a caption..." required="required"></textarea>
+    </div>
+
+</div>
+
+<div class="upload-btn">
+    <button class="upload-next" type="button"> NEXT </button>
+</div>
+
+<script src="/public/js/upload.js"></script>
+<%- include('inc/tabbar.ejs')%>
+<%- include('inc/tail.ejs')%>
