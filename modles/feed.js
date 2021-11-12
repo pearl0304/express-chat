@@ -51,6 +51,14 @@ export async function findImages(data){
     }
 }
 
+export async function deleteImages(data){
+    try{
+
+    }catch(e){
+        console.error(e)
+    }
+}
+
 
 
 

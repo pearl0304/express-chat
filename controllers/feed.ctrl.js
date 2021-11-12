@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import { insertImages,findImages,deleteSelectedImage } from "../modles/feed.js"
+import { insertImages,findImages} from "../modles/feed.js"
 export const feedController = {
 
     getphoto : async(req,res)=>{
