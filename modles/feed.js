@@ -51,8 +51,11 @@ export async function findImages(data){
     }
 }
 
-export async function deleteImages(data){
+export async function deleteSelectImage(data){
     try{
+        const index = data['index']
+        const user_id = data['user_id']
+        const fileName = data['fileName']
 
     }catch(e){
         console.error(e)
