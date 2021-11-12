@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import { insertImages,findImages } from "../modles/feed.js"
+import { insertImages,findImages,deleteSelectedImage } from "../modles/feed.js"
 export const feedController = {
 
     getphoto : async(req,res)=>{
@@ -27,22 +27,39 @@ export const feedController = {
                     const data = {
                         index : Math.random(),
                         user_id : user_id,
-                        fileNames : fileNames,
+                        fileNames :fileNames,
                         reg_dt : new Date()
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
 
-                    res.render('upload',{selectedImages})
+                    res.render('upload',{selectedImages, user_id,index : data['index']})
 
                 }else{
                     console.log('파일 없음')
                 }
-            
-            //res.render('process/upload_process', {statusCode : 200})
-
+        
         }catch(e){
             console.error(e)
         }
-    }
+    },
+    deleteSelectImage : async (req,res)=>{
+        try{
+            const delIndex = req.body.delIndex
+            const delUser_id = req.body.delUser_id
+            const delImageName = req.body.delImageName
+    
+            const delData = {
+                index : delIndex,
+                user_id : delUser_id,
+                fileName : delImageName    
+            }
+
+            await deleteSelectedImage(delData)
+
+            
+        }catch(e){
+            console.error(e)
+        }
+    },
 }
