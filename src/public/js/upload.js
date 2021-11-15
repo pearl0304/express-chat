@@ -9,6 +9,8 @@ function deleteSeletedImages(){
         const index = $(this).parent().attr("index")
         const user_id = $(this).parent().attr("user_id")
 
+        console.log(seletedImage,index, user_id)
+
         $.ajax({
             url:'/feed/imgedel',
             type : 'post', 

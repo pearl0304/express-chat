@@ -13,8 +13,6 @@ async function getImagesColletion(){
 
 export async function insertImages(data){
     try{
-        console.log('modles!')
-
        const imagesCollection = await getImagesColletion()
        
        await imagesCollection.insertOne({
@@ -29,23 +27,23 @@ export async function insertImages(data){
 
 export async function findImages(data){
     try{
-
         const index = data['index']
         const user_id = data['user_id']
         const reg_dt = data['reg_dt']
         const selectedImages = []
-
+        const imgCount = data['fileNames'].length
 
         const imagesCollection = await getImagesColletion()
         const imagesCursor = imagesCollection.find({index : index, user_id : user_id, reg_dt : reg_dt})
-
+        
         await imagesCursor.forEach(e=>{
             if(e.fileNames){  
-                selectedImages.push(e.fileNames)
+                for(let i=0; i<imgCount; i++){
+                    selectedImages.push(e.fileNames[i]['fileName'])
+                }                
             }
         })
-        return selectedImages[0] ? selectedImages[0] : ''
-    
+        return selectedImages ? selectedImages : ''
     }catch(e){
         console.error(e)
     }
@@ -53,9 +51,14 @@ export async function findImages(data){
 
 export async function deleteSelectImage(data){
     try{
+
+        console.log('delData', data)
         const index = data['index']
         const user_id = data['user_id']
         const fileName = data['fileName']
+
+        const imagesCollection = await getImagesColletion()
+        imagesCollection.updateOne({"fileNames" : {$elemMatch : {fileName:fileName}}},{$pull:{"fileNames" : {"fileName" : fileName}}})
 
     }catch(e){
         console.error(e)

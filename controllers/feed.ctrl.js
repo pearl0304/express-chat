@@ -14,12 +14,12 @@ export const feedController = {
         try{
             const user_id= req.body.userData['user_id']      
             const {files} = req;
+
             const fileNames = [];
             for (const key in files) {
                 if (Object.hasOwnProperty.call(files, key)) {
-                    const element = files[key];
-                    const fileName = element.filename  
-                    fileNames.push(fileName)               
+                    const fileName = files[key].filename;
+                    fileNames.push({fileName :fileName})          
                 }
             }
                 if(fileNames.length >0){
@@ -31,8 +31,7 @@ export const feedController = {
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
-                    console.log(selectedImages)
-
+                    
                     res.render('upload',{selectedImages, user_id, index : data['index']})
 
                 }else{
