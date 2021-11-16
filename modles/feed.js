@@ -62,14 +62,20 @@ export async function deleteSelectImage(data){
 }
 
 
-export async function findImagesAfterDelete(data){
+export async function findFinalImages(data){
     try{
         const user_id = data['user_id']
-        const index = data['imageIndex']
+        const index = Number(data['index'])
         const images = []
 
         const articlesCollection = await getArticleColletion()
         const articlesCursor = articlesCollection.find({index : index, user_id : user_id},{"fileNames":1,"_id":0})
+
+        await articlesCursor.forEach(e=>{
+            if(e.fileNames){
+                console.log(e.fileNames)
+            }
+        })
 
    
 
@@ -79,11 +85,17 @@ export async function findImagesAfterDelete(data){
 
 export async function insertArticles(data){
     try{
-        const articlesCollection = await getArticleColletion()
-        await articlesCollection.insertOne({
-            ...data,
-            reg_dt : new Date()
-        })
+        const user_id = data['user_id']
+        const index = Number(data['index'])
+        const text = data['text']
+
+        console.log(typeof(index))
+
+        // const articlesCollection = await getArticleColletion()
+        // await articlesCollection.insertOne({
+        //     ...data,
+        //     reg_dt : new Date()
+        // })
     }catch(e){
         console.error(e)
     }
