@@ -1,5 +1,6 @@
 $(function(){
     deleteSeletedImages()
+    uploadArticles()
 
 })
 
@@ -24,4 +25,19 @@ function deleteSeletedImages(){
             
         })
     })    
+}
+
+function uploadArticles(){
+    $(".upload-next").on("click",function(){
+        const index = $(".img-box").attr("index")
+        const text = $("textarea[name=text]").val()
+
+        
+        $.ajax({
+            url:'/feed/article',
+            type : 'post', 
+            data: {imageIndex : index, text : text},
+        })
+
+    })
 }

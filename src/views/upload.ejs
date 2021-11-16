@@ -2,7 +2,7 @@
 
 <header id="header">
     <div class="hd-tit">
-        <a href="#">
+        <a href="/feed/photo">
             <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
         </a>
         <!-- tit -->
@@ -11,26 +11,24 @@
 </header>
 
 <div class="upload">
-    <form action="/feed/article" method="post">
-        <% if (result === 'img'){%>
-            <div class="post-img post-slide">
-                <%for (let i=0; i<selectedImages.length; i++){%>
-                    <div class="img-box"  img-name=<%=selectedImages[i]%> index=<%=index%> user_id=<%=user_id%>>
-                        <img class="cover" src="/uploads/<%=selectedImages[i]%>" alt="게시물이미지">
-                        <button class="delete-btn" type="button" img-name=<%=selectedImages[i]%>>삭제버튼</button>
-                    </div>
-                <%}%>
-            </div>
-        <%}%>    
-        <!-- 게시글 입력창 -->
-        <div class="upload-txt">
-            <textarea class="autosize" name="text" placeholder="Write a caption..." required="required"></textarea>
+    <% if (result === 'img'){%>
+        <div class="post-img post-slide">
+            <%for (let i=0; i<selectedImages.length; i++){%>
+                <div class="img-box"  img-name=<%=selectedImages[i]%> index=<%=index%> user_id=<%=user_id%>>
+                    <img class="cover" src="/uploads/<%=selectedImages[i]%>" alt="게시물이미지">
+                    <button class="delete-btn" type="button" img-name=<%=selectedImages[i]%>>삭제버튼</button>
+                </div>
+            <%}%>
         </div>
+    <%}%>    
+    <!-- 게시글 입력창 -->
+    <div class="upload-txt">
+        <textarea class="autosize" name="text" placeholder="Write a caption..." required="required"></textarea>
+    </div>
 
-        <div class="upload-btn">
-            <button class="upload-next" type="submit"> NEXT </button>
-        </div>
-    </form>
+    <div class="upload-btn">
+        <button class="upload-next" type="button"> NEXT </button>
+    </div>
 </div>
 
 <script src="/public/js/upload.js"></script>

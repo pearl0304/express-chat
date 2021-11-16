@@ -9,7 +9,7 @@ const upload = multer({dest:'uploads/'})
 feedRouter.get('/photo',mainController.verifyToken,feedController.getphoto)
 feedRouter.post('/photo',mainController.getTokendata,upload.array('imgUpload',5),mainController.getTokendata,feedController.imageUpload)
 
-feedRouter.post('/imgedel',feedController.deleteSelectImage)
+feedRouter.post('/imgedel',mainController.getTokendata,feedController.deleteSelectImage)
 
 feedRouter.post('/article',mainController.getTokendata,feedController.uploadArticle)
 

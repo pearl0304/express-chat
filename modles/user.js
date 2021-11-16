@@ -26,6 +26,7 @@ export async function checkDuplicteID(data){
                 user_id_arry.push(e.user_id)
             }
         })
+        userIDCursor.close()
         return user_id_arry[0] ? true : false
     }catch(e){
         console.error(e)
@@ -48,6 +49,7 @@ export async function checkDuplicteNick(data){
                 user_nick_arry.push(e.user_nick)
             }
         })
+        userNickCursor.close()
         return user_nick_arry[0] ? true : false
     }catch(e){
         console.error(e)
@@ -86,7 +88,7 @@ export async function login(data){
                 user_info.push(e.user_id, e.user_nick)
             }
         })
-    
+        userCursor.close()
         return user_info[0] ? true : false
     }catch(e){
         console.error(e)}
@@ -105,6 +107,7 @@ export async function findNickName (user_id){
                 user_nick.push(e.user_nick)
             }
         })
+        userCursor.close()
         return user_nick[0] ? user_nick[0] : ''
     }catch(e){
         console.error(e)

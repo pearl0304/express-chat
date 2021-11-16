@@ -1,9 +1,5 @@
 import chalk from "chalk"
-import { insertImages,
-        findImages,
-        deleteSelectImage,
-        insertArticles} 
-from "../modles/feed.js"
+import { insertImages,findImages,deleteSelectImage,findImagesAfterDelete,insertArticles} from "../modles/feed.js"
 export const feedController = {
 
     getphoto : async(req,res)=>{
@@ -31,6 +27,7 @@ export const feedController = {
                         index : Math.random(),
                         user_id : user_id,
                         fileNames :fileNames,
+                        text : '',
                         reg_dt : new Date()
                     }        
                     await insertImages(data)
@@ -67,19 +64,25 @@ export const feedController = {
         try{
             const user_id = req.body.userData['user_id']
             const user_nick = req.body.userData['user_nick']
-            const text = req.body.text
-
+            const imageIndex = req.body.imageIndex
+            const text = req.body.text 
+    
             const data = {
                 user_id : user_id,
                 user_nick : user_nick,
-                text : text
+                imageIndex : imageIndex,
+                text : text     
             }
+            console.log(data)           
 
-            await insertArticles(data)
-            res.render('feed',{user_id,user_nick,text})
+            await findImagesAfterDelete (data)
+   
+            //await insertArticles(data)
 
-    
- 
+
+
+
+           // res.render('feed',{user_id,user_nick,text})
         }catch(e){
             console.error(e)
         }
