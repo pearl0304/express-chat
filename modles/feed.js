@@ -70,11 +70,13 @@ export async function deleteSelectImage(data){
     }
 }
 
-export async function insetArticles(data){
+export async function insertArticles(data){
     try{
-
-        
-
+        const articlesCollection = await getArticleColletion()
+        await articlesCollection.insertOne({
+            ...data,
+            reg_dt : new Date()
+        })
     }catch(e){
         console.error(e)
     }
