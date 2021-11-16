@@ -13,9 +13,9 @@ async function getArticleColletion(){
 
 export async function insertImages(data){
     try{
-       const imagesCollection = await getArticleColletion()
+       const articlesCollection = await getArticleColletion()
        
-       await imagesCollection.insertOne({
+       await articlesCollection.insertOne({
            ...data,          
        })
         console.log('insert Images 성공')
@@ -33,17 +33,17 @@ export async function findImages(data){
         const selectedImages = []
         const imgCount = data['fileNames'].length
 
-        const imagesCollection = await getArticleColletion()
-        const imagesCursor = imagesCollection.find({index : index, user_id : user_id, reg_dt : reg_dt})
+        const articlesCollection = await getArticleColletion()
+        const articlesCursor = articlesCollection.find({index : index, user_id : user_id, reg_dt : reg_dt})
         
-        await imagesCursor.forEach(e=>{
+        await articlesCursor.forEach(e=>{
             if(e.fileNames){  
                 for(let i=0; i<imgCount; i++){
                     selectedImages.push(e.fileNames[i]['fileName'])
                 }                
             }
         })
-        imagesCursor.close()
+        articlesCursor.close()
         return selectedImages ? selectedImages : ''
     }catch(e){
         console.error(e)
@@ -53,8 +53,8 @@ export async function findImages(data){
 export async function deleteSelectImage(data){
     try{
         const fileName = data['fileName']
-        const imagesCollection = await getArticleColletion()
-        await imagesCollection.updateMany({"fileNames" : {$elemMatch : {fileName:fileName}}},{$pull:{"fileNames" : {"fileName" : fileName}}})
+        const articlesCollection = await getArticleColletion()
+        await articlesCollection.updateMany({"fileNames" : {$elemMatch : {fileName:fileName}}},{$pull:{"fileNames" : {"fileName" : fileName}}})
 
     }catch(e){
         console.error(e)
@@ -68,8 +68,8 @@ export async function findImagesAfterDelete(data){
         const index = data['imageIndex']
         const images = []
 
-        const imagesCollection = await getArticleColletion()
-        const imagesCursor = imagesCollection.find({index : index, user_id : user_id},{"fileNames":1,"_id":0})
+        const articlesCollection = await getArticleColletion()
+        const articlesCursor = articlesCollection.find({index : index, user_id : user_id},{"fileNames":1,"_id":0})
 
    
 
