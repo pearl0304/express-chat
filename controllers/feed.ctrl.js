@@ -73,9 +73,9 @@ export const feedController = {
                 index: Number(imageIndex),
                 text : text     
             }
-            console.log(data)           
-
-            await findFinalImages (data)
+          
+            const finalImage =await findFinalImages (data)
+           
    
             //await insertArticles(data)
 

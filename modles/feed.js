@@ -70,14 +70,16 @@ export async function findFinalImages(data){
 
         const articlesCollection = await getArticleColletion()
         const articlesCursor = articlesCollection.find({index : index, user_id : user_id},{"fileNames":1,"_id":0})
-
+       
         await articlesCursor.forEach(e=>{
             if(e.fileNames){
-                console.log(e.fileNames)
+                const imageCount = e.fileNames.length
+                for(let i=0; i<imageCount; i++){
+                    images.push(e.fileNames[i]['fileName']) 
+                }
             }
         })
-
-   
+        return images
 
     }catch(e){
         console.error(e)}
