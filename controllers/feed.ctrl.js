@@ -31,11 +31,10 @@ export const feedController = {
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
-                    
-                    res.render('upload',{selectedImages, user_id, index : data['index']})
+                    res.render('upload',{selectedImages, user_id, index : data['index'], result :"img"})
 
                 }else{
-                    console.log('파일 없음')
+                    res.render('upload',{result:"text"})
                 }
         
         }catch(e){
@@ -44,19 +43,31 @@ export const feedController = {
     },
     deleteSelectImage : async (req,res)=>{
         try{
-            const delIndex = req.body.delIndex
-            const delUser_id = req.body.delUser_id
-            const delImageName = req.body.delImageName
+            const index = req.body.index
+            const user_id = req.body.user_id
+            const seletedImage = req.body.seletedImage
     
             const delData = {
-                index : delIndex,
-                user_id : delUser_id,
-                fileName : delImageName    
+                index : index,
+                user_id : user_id,
+                fileName : seletedImage    
             }
             await deleteSelectImage(delData)
+            res.send(seletedImage)
     
         }catch(e){
             console.error(e)
         }
     },
+    uploadArticle : async(req,res)=>{
+        try{
+            console.log(req.body.userData)
+            const text = req.body.text
+
+    
+ 
+        }catch(e){
+            console.error(e)
+        }
+    }
 }

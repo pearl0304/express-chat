@@ -11,6 +11,15 @@ async function getImagesColletion(){
     }
 }
 
+async function getArticleColletion(){
+    try{
+        const client = await conn 
+        return client.db("express").collection("article");
+    }catch(e){
+        console.error(e)
+    }
+}
+
 export async function insertImages(data){
     try{
        const imagesCollection = await getImagesColletion()
@@ -52,18 +61,26 @@ export async function findImages(data){
 export async function deleteSelectImage(data){
     try{
 
-        console.log('delData', data)
-        const index = data['index']
-        const user_id = data['user_id']
         const fileName = data['fileName']
 
         const imagesCollection = await getImagesColletion()
-        imagesCollection.updateOne({"fileNames" : {$elemMatch : {fileName:fileName}}},{$pull:{"fileNames" : {"fileName" : fileName}}})
+        await imagesCollection.updateMany({"fileNames" : {$elemMatch : {fileName:fileName}}},{$pull:{"fileNames" : {"fileName" : fileName}}})
+    }catch(e){
+        console.error(e)
+    }
+}
+
+export async function insetArticles(data){
+    try{
+
+        
 
     }catch(e){
         console.error(e)
     }
 }
+
+
 
 
 

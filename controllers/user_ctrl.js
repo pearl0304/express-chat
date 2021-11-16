@@ -1,4 +1,4 @@
-import {checkDuplicteID,checkDuplicteNick,insertUser,login } from "../modles/user.js"
+import {checkDuplicteID,checkDuplicteNick,insertUser,login,findNickName } from "../modles/user.js"
 import jwt from "jsonwebtoken"
 export const userController = {
 
@@ -89,9 +89,10 @@ export const userController = {
                 
                 if(result){
 
+                    const user_nick = await findNickName(data['user_id'])                    
                     const created_token = jwt.sign(
                         {
-                            user_id: data['user_id'], user_nick: data['user_nick']
+                            user_id: data['user_id'], user_nick: user_nick
                         }
                         , process.env.SECRET_CODE,
                         {
@@ -102,7 +103,7 @@ export const userController = {
 
                     //save a token in cookie
                     res.cookie('jwtToken',created_token);
-                    req.body.userData={user_id: data['user_id'], user_nick: data['user_nick']}
+                    req.body.userData={user_id: data['user_id'], user_nick: user_nick}
                     req.statusResult = 'Login Success'
                     console.log('register token save complete!')
                     res.render('process/register_process', {result : "SUCCESS", user_id:data['user_id']})

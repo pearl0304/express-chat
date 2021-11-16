@@ -11,4 +11,6 @@ feedRouter.post('/photo',mainController.getTokendata,upload.array('imgUpload',5)
 
 feedRouter.post('/imgedel',feedController.deleteSelectImage)
 
+feedRouter.post('/article',mainController.getTokendata,feedController.uploadArticle)
+
 export default feedRouter
