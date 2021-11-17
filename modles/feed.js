@@ -85,19 +85,15 @@ export async function findFinalImages(data){
         console.error(e)}
 }
 
-export async function insertArticles(data){
+export async function insertText(data){
     try{
         const user_id = data['user_id']
         const index = Number(data['index'])
         const text = data['text']
 
-        console.log(typeof(index))
-
-        // const articlesCollection = await getArticleColletion()
-        // await articlesCollection.insertOne({
-        //     ...data,
-        //     reg_dt : new Date()
-        // })
+        const articlesCollection = await getArticleColletion()
+        await articlesCollection.updateOne({index:index, user_id:user_id},{$set:{text:text}})
+        
     }catch(e){
         console.error(e)
     }
