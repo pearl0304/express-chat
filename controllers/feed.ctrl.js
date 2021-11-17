@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/feed.js"
+import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
 export const feedController = {
 
     getFeedParm : (req,res)=>{

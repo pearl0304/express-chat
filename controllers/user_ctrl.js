@@ -120,19 +120,5 @@ export const userController = {
         }catch(e){
             console.error(e)
         }
-    },
-
-    getFeedParm : (req,res)=>{
-
-    },
-
-    getFeed : async(req,res)=>{
-        try{
-            // DB에 있는 글 가지고 오기
-            res.render('feed')
-        }
-       catch(e){
-           console.error(e)
-       }
-    }    
+    },    
 }
