@@ -99,6 +99,23 @@ export async function insertText(data){
     }
 }
 
+export async function insertOnlyText(data){
+    try{
+        const user_id = data['user_id']
+        const index = Number(data['index'])
+        const text = data['text']
+
+        const articlesCollection = await getArticleColletion()
+        await articlesCollection.insertOne({
+            ...data,
+            reg_dt : new Date()
+        })
+
+    }catch(e){
+        console.error(e)
+    }
+}
+
 
 
 

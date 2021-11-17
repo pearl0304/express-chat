@@ -31,12 +31,15 @@ function uploadArticles(){
     $(".upload-next").on("click",function(){
         const index = $(".img-box").attr("index")
         const text = $("textarea[name=text]").val()
-
-        
+        const user_id = $(".img-box").attr("user_id")
+       
         $.ajax({
             url:'/feed/article',
             type : 'post', 
             data: {imageIndex : index, text : text},
+            success : function(data){
+                location.href='/user/feed:user_id'
+            }
         })
 
     })
