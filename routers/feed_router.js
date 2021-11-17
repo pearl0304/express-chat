@@ -6,6 +6,8 @@ import multer from "multer"
 
 const upload = multer({dest:'uploads/'})
 
+feedRouter.get('/:user_id',mainController.verifyToken,feedController.getFeed)
+
 feedRouter.get('/photo',mainController.verifyToken,feedController.getphoto)
 feedRouter.post('/photo',mainController.getTokendata,upload.array('imgUpload',5),mainController.getTokendata,feedController.imageUpload)
 

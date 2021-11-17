@@ -128,6 +128,7 @@ export const userController = {
 
     getFeed : async(req,res)=>{
         try{
+            // DB에 있는 글 가지고 오기
             res.render('feed')
         }
        catch(e){
