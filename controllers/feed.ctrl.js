@@ -1,5 +1,6 @@
 import chalk from "chalk"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
+import { getAllArticles } from "../modles/feed.js"
 export const feedController = {
 
     getFeedParm : (req,res)=>{
@@ -8,6 +9,7 @@ export const feedController = {
 
     getFeed : async(req,res)=>{
         try{
+            const articles = await getAllArticles()
             res.render('feed')
         }
        catch(e){
@@ -25,7 +27,8 @@ export const feedController = {
     },
     imageUpload : async(req,res)=>{
         try{
-            const user_id= req.body.userData['user_id']      
+            const user_id= req.body.userData['user_id'] 
+            const user_nick = req.body.userData['user_nick']     
             const {files} = req;
 
             const fileNames = [];
@@ -39,13 +42,14 @@ export const feedController = {
                     const data = {
                         index : Math.random(),
                         user_id : user_id,
+                        user_nick : user_nick,
                         fileNames :fileNames,
                         text : '',
                         reg_dt : new Date()
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
-                    res.render('upload',{selectedImages, user_id, index : data['index'], result :"img"})
+                    res.render('upload',{selectedImages, user_id,index : data['index'], result :"img"})
 
                 }else{
                     res.render('upload',{result:"text"})
@@ -94,6 +98,7 @@ export const feedController = {
                 const data = {
                     index:Math.random(),
                     user_id : user_id,
+                    user_nick : user_nick,
                     text : text 
                 }
                 await insertOnlyText(data)

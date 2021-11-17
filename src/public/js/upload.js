@@ -38,7 +38,7 @@ function uploadArticles(){
             type : 'post', 
             data: {imageIndex : index, text : text},
             success : function(data){
-                location.href='/user/feed:user_id'
+                location.href='/feed/:user_id'
             }
         })
 
