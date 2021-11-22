@@ -1,4 +1,3 @@
-import { Map } from "bson";
 import MongoClient from "./config.js";
 var conn = MongoClient.connect()
 
@@ -18,11 +17,13 @@ export async function getAllArticles(){
         var article = []
         const articleCollection = await getArticleColletion()
         const articleCursor = articleCollection.find().sort({"reg_dt":-1}).limit(20)
+
         await articleCursor.forEach(e=>{
             article['index'] = e.index
             article['user_id']= e.user_id
             article['user_nick'] = e.user_nick
-            article['text']=e.text
+            article['text'] = e.text
+            article['reg_dt'] = e.reg_dt 
             article['img'] = []
 
             if(e.fileNames){
@@ -31,10 +32,12 @@ export async function getAllArticles(){
                     article['img'].push(e.fileNames[i]['fileName']) 
                 }
             }
-              articles.push(article)
-        }) 
-        //console.log(articles)
-        return articles 
+        })
+       
+
+
+      
+      // return articles 
     }
     catch(e){
         console.error(e)

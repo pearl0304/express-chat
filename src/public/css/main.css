@@ -1,9 +1,18 @@
 @charset "utf-8";
 
+.header-hello-main{
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background:linear-gradient(89.56deg, #FA709A 0.62%, #FBD786 123.23%, #FEE140 123.25%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
 
 .header-hello{
     position: absolute;
-    margin-top: 250px;
+    margin-top: 100px;
     margin-left: 50%;
     transform: translateX(-50%);
     background:linear-gradient(89.56deg, #FA709A 0.62%, #FBD786 123.23%, #FEE140 123.25%);
@@ -88,8 +97,8 @@ input#avatar{
 .prf-ico{}
 .plus-ico{
     position:absolute;
-    bottom:0;
-    right: 30px;
+    bottom:4px;
+    right: 104px;
 }
 
 

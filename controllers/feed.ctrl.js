@@ -10,6 +10,8 @@ export const feedController = {
     getFeed : async(req,res)=>{
         try{
             const articles = await getAllArticles()
+            //console.log(articles)
+            
             res.render('feed')
         }
        catch(e){

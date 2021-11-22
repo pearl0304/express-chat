@@ -13,10 +13,16 @@ export const userController = {
 
     postRegister:async(req,res)=>{
         try{
+
+            let filename =''
+            if(req.file){
+                filename = req.file.filename
+            }
             const data = {
                 user_id : req.body.user_id,
                 user_nick : req.body.user_nick,
                 user_pw : req.body.user_pw,
+                profile_img : filename,               
             }
 
             if(data){

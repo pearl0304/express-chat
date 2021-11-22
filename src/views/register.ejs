@@ -13,8 +13,19 @@
 </div>
 
 <div id="container">
-    <!-- 입력창 버튼 -->
-    <form id="signUpform" class="btn-wrap" method="post" action="/user/register">
+
+    <form id="signUpform" class="btn-wrap" method="post" action="/user/register" enctype="multipart/form-data">
+        <!-- profile -->
+        <div class="sign-prf">
+            <a href="#" class="ico-fixed">
+                <input id="profile-img" type="file" name="profile-img" style="display: none"/>
+                <label for="profile-img">
+                    <img src="/public/images/imagesK/profile.svg" alt="프로필 아이콘" class="prf-ico">
+                </label>
+                <img src="/public/images/imagesK/plus.svg" alt="플러스 아이콘" class="plus-ico">
+            </a>
+        </div>
+        <!-- input button -->
         <input class="btn-comn signup-btn btn-line" placeholder="Id : Up to 12 characters" name="user_id" maxlength="12">
         <input class="btn-comn signup-btn btn-line" placeholder="Nick Name : Up to 12 characters" name="user_nick" maxlength="12">
         <input class="btn-comn signup-btn btn-line" placeholder="Password : Up to 12 characters" name="user_pw" maxlength="12" type="password">
