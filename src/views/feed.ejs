@@ -17,6 +17,7 @@
     </header>
 
     <!-- content-->
+   <%for (let i=0; i<result.length; i++){%>
         <div class="post">
             <!-- 유저 정보 -->
             <div class="post-hd">
@@ -24,8 +25,8 @@
                     <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
                 </div>
                 <div class="user-prf">
-                    <h4>닉네임</h4>
-                    <p class="time">5분전</p>
+                    <h4><%=result[i]['user_nick']%></h4>
+                    <p class="time"><%=result[i]['reg_dt']%></p>
                 </div>
                 <!-- 제어 및 설정 ico -->
                 <div class="control">
@@ -43,7 +44,7 @@
                 </div>
 
                 <!-- 본문 -->
-                <div class="post-txt">본문</div>
+                <div class="post-txt"><%=result[i]['text']%></div>
                 <span class="more">
                         <a href="#">
                             더 보기
@@ -65,5 +66,6 @@
                 </ul>
             </div>            
         </div>
+    <%}%>    
 <%- include('inc/tabbar.ejs')%>
 <%- include('inc/tail.ejs')%>

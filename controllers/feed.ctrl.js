@@ -9,10 +9,8 @@ export const feedController = {
 
     getFeed : async(req,res)=>{
         try{
-            const articles = await getAllArticles()
-            //console.log(articles)
-            
-            res.render('feed')
+            const result = await getAllArticles()
+            res.render('feed',{result})
         }
        catch(e){
            console.error(e)
@@ -95,7 +93,6 @@ export const feedController = {
                 const finalImage =await findFinalImages (data)
                 await insertText(data)
                 res.send('sucess')
-                //res.render('feed',{user_id, user_nick, text,finalImage, index : data['index'], result : 'img'})
             }else{
                 const data = {
                     index:Math.random(),
@@ -105,7 +102,6 @@ export const feedController = {
                 }
                 await insertOnlyText(data)
                 res.send('sucess')
-               // res.render('feed',{user_id, user_nick, text, index : data['index']})
             }
         }catch(e){
             console.error(e)
