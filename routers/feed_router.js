@@ -15,4 +15,6 @@ feedRouter.post('/article',mainController.getTokendata,feedController.uploadArti
 
 feedRouter.get('/:user_id',mainController.verifyToken,feedController.getFeed)
 
+feedRouter.get('/comment/:index',mainController.verifyToken,feedController.getComment)
+
 export default feedRouter

@@ -107,4 +107,14 @@ export const feedController = {
             console.error(e)
         }
     },
+
+    getComment : async (req,res)=>{
+        try{
+
+            res.render('comment')
+
+        }catch(e){
+            console.error(e)
+        }
+    }
 }
