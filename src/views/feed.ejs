@@ -42,13 +42,15 @@
             <!-- 게시물 내용 -->
             <div class="post-bd">
                 <!-- 이미지 -->
+                <%if(articles[i]['imgs']){ %>
                 <div class="post-img post-slide">
-                    <%if(articles[i]['imgs']){ for(let j=0; j<articles[i]['imgs'].length; j++){%>    
+                   <% for(let j=0; j<articles[i]['imgs'].length; j++){%>    
                     <div>
                         <img class="cover" src="/uploads/<%=articles[i]['imgs'][j]%>" alt="게시물이미지">
                     </div>
-                    <%}}%>
+                    <%}%>
                 </div>
+                <%}%>
         
                 <!-- 본문 -->
                 <div class="post-txt"><%=articles[i]['text']%></div>
