@@ -161,18 +161,23 @@ input#avatar{
     margin: auto;
 }
 .post-ft{
+    margin-left: 5px;
     display: flex;
     align-items: center;
 }
 .post-img{padding-bottom: 16px;border-bottom: 1px solid rgba(51,51,51,0.2);}
 .cover{
     display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
     height:250px;
     object-fit: cover;
     border-radius: 10px;
 }
 .post-txt{
+    margin-left: 5px;
+    margin-top: 15px;
     display:inline-block;
     font-size: 13px;
 }
@@ -240,7 +245,7 @@ input#avatar{
 }
 .comment{
     padding: 15px 0;
-    border-bottom: 1px solid rgba(51,51,51,0.05);
+    /* border-bottom: 1px solid rgba(51,51,51,0.05); */
 }
 .comment{}
 .reply{}
@@ -259,6 +264,7 @@ input#avatar{
 }
 .reply a,.more a{color:rgba(51, 51, 51, 0.3);}
 .time{
+    margin-top: 2px;
     font-size:11px;
     color:rgba(51, 51, 51, 0.4);
 }
