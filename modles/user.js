@@ -95,8 +95,7 @@ export async function login(data){
 }
 
 // After login get user nick
-export async function findNickName (user_id){
-
+export async function findNickName(user_id){
     try{
         const user_nick =[] 
 
@@ -112,7 +111,25 @@ export async function findNickName (user_id){
     }catch(e){
         console.error(e)
     }
+}
 
+export async function findProfile(user_id){
+    try{
+        const profile = [] 
+
+        const userCollection = await getUserColletion()
+        const userCursor = userCollection.find({user_id : user_id})
+        
+        await userCursor.forEach(e=>{
+            if(e.profile_img){
+                profile.push(e.profile_img)
+            }
+        })
+        userCursor.close()
+        return profile[0] ? profile[0] : ""
+    }catch(e){
+        console.error(e)
+    }
 }
 
 

@@ -1,5 +1,4 @@
 <%- include('inc/head.ejs')%>
-
 <!-- 피드전체 -->
 <div id="feed-wrap">
     <!-- header -->
@@ -17,16 +16,20 @@
     </header>
 
     <!-- content-->
-   <%for (let i=0; i<result.length; i++){%>
+    <%for(let i=0; i<articles.length; i++){%>
         <div class="post">
             <!-- 유저 정보 -->
             <div class="post-hd">
                 <div class="user-img">
-                    <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                    <%if(articles[i]['profile']==''){%>
+                        <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                    <%}else{%>
+                        <img src="/uploads/profile/<%=articles[i]['profile']%>" alt="프로필이미지">
+                    <%}%>
                 </div>
                 <div class="user-prf">
-                    <h4><%=result[i]['user_nick']%></h4>
-                    <p class="time"><%=result[i]['reg_dt']%></p>
+                    <h4><%=articles[i]['user_nick']%></h4>
+                    <p class="time">5분전</p>
                 </div>
                 <!-- 제어 및 설정 ico -->
                 <div class="control">
@@ -39,17 +42,19 @@
             <!-- 게시물 내용 -->
             <div class="post-bd">
                 <!-- 이미지 -->
-                <div class="post-img">
-                    <div><img class="cover" src="http://placehold.it/500x500" alt="게시물이미지"></div>
+                <div class="post-img post-slide">
+                    <%if(articles[i]['imgs']){ for(let j=0; j<articles[i]['imgs'].length; j++){%>    
+                    <div>
+                        <img class="cover" src="/uploads/<%=articles[i]['imgs'][j]%>" alt="게시물이미지">
+                    </div>
+                    <%}}%>
                 </div>
-
+        
                 <!-- 본문 -->
-                <div class="post-txt"><%=result[i]['text']%></div>
+                <div class="post-txt"><%=articles[i]['text']%></div>
                 <span class="more">
-                        <a href="#">
-                            더 보기
-                        </a>
-                    </span>
+                        <a href="#"> 더 보기 </a>
+                </span>
                 <ul class="post-ft">
                     <li class="comment">
                         <a href="#">
@@ -65,7 +70,7 @@
                     </li>
                 </ul>
             </div>            
-        </div>
-    <%}%>    
+        </div> 
+    <%}%>     
 <%- include('inc/tabbar.ejs')%>
 <%- include('inc/tail.ejs')%>

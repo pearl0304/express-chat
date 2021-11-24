@@ -1,5 +1,6 @@
 import MongoClient from "./config.js";
 var conn = MongoClient.connect()
+import {findProfile} from "./user.js"
 
 async function getArticleColletion(){
     try{
@@ -13,9 +14,21 @@ async function getArticleColletion(){
 export async function getAllArticles(){
     try{
         const articleCollection = await getArticleColletion()
-        const articleCursor = articleCollection.find().sort({"reg_dt":-1}).limit(20).toArray()
-
-       return articleCursor
+        const articleCursor = await articleCollection.find().sort({"reg_dt":-1}).limit(20).toArray()
+        for(let i=0; i<articleCursor.length; i++){
+            const profile = await findProfile(articleCursor[i]['user_id'])
+            articleCursor[i]['profile'] = profile 
+            if(articleCursor[i]['fileNames']){
+                const fileName = []
+                const fileNames = articleCursor[i]['fileNames']
+                for(let j=0; j<fileNames.length; j++){                   
+                    fileName.push(fileNames[j]['fileName'])
+                }
+                articleCursor[i]['imgs']= fileName
+            }
+        }
+        //console.log(articleCursor)
+        return articleCursor      
     }
     catch(e){
         console.error(e)

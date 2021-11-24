@@ -1,6 +1,6 @@
 import chalk from "chalk"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
-import { getAllArticles } from "../modles/feed.js"
+import { getAllArticles} from "../modles/feed.js"
 export const feedController = {
 
     getFeedParm : (req,res)=>{
@@ -9,8 +9,8 @@ export const feedController = {
 
     getFeed : async(req,res)=>{
         try{
-            const result = await getAllArticles()
-            res.render('feed',{result})
+            const articles = await getAllArticles()  
+            res.render('feed',{articles})
         }
        catch(e){
            console.error(e)
