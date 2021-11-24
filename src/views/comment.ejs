@@ -44,36 +44,46 @@
     <!-- 댓글 입력창 -->
     <div class="comment-form">
         <input class="comt-tf" type="text" name="comment" placeholder="Write comment." index="<%=index%>">
-        <button type="button" class="comt-btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
+        <button type="button" class="comt-btn" name="comment_btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
     </div>
 </div>
 <script>
 $(function(){
-    checkCommentForm()  
+    insertComment()  
+    commentEnter ()
 })
 
-function checkCommentForm(){
-    $(".comt-btn").on("click",function(){
-        const comment = $(".comt-tf").val()
-        const index = $(".comt-tf").attr("index")
+$(document).on("click","button[name=comment_btn]",function () {insertComment();})
 
-        if(comment.length == 0){
-            alert('Please write comment')
-            return false
-        }
+function insertComment(){
 
-        $.ajax({
-            url:'/feed/comment',
-            type : 'post',
-             data : {index : index, comment:comment},
-             success : function(data){
-                $(".comt-tf").val('')
-             }
-        })
+    const comment = $(".comt-tf").val()
+    const index = $(".comt-tf").attr("index")
 
-        
+    if(comment.length == 0){
+        alert('Please write comment')
+        return false
+    }
+
+    $.ajax({
+        url:'/feed/comment',
+        type : 'post',
+            data : {index : index, comment:comment},
+            success : function(data){
+            $(".comt-tf").val('')
+            }
     })
 }
+
+function commentEnter (){
+    $("input[name=comment]").keydown(function (key) {
+        if(key.keyCode == 13 ) {
+            insertComment()
+        }
+    })
+    }
+
+
 
 
 </script>
