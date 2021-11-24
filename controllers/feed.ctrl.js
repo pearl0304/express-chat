@@ -1,6 +1,6 @@
 import chalk from "chalk"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
-import { getAllArticles} from "../modles/feed.js"
+import { getAllArticles,insertComments} from "../modles/feed.js"
 export const feedController = {
 
     getFeedParm : (req,res)=>{
@@ -107,11 +107,36 @@ export const feedController = {
             console.error(e)
         }
     },
-
     getComment : async (req,res)=>{
         try{
+            // 댓글 목록 가져오기
+            const indexParams= req.params.index
+            const index = Number(indexParams.slice(1,indexParams.length)) 
 
-            res.render('comment')
+            res.render('comment',{index})
+
+        }catch(e){
+            console.error(e)
+        }
+    },
+
+    insertComment : async (req,res)=>{
+        try{
+            const user_id = req.body.userData['user_id']
+            const user_nick = req.body.userData['user_nick']
+            const comment = req.body.comment
+            const index = req.body.index
+           
+            const data = {
+                user_id : user_id,
+                user_nick : user_nick,
+                articleIndex : Number(index),
+                commentIndex : Math.random(),
+                comment : comment
+            }
+
+            await insertComments(data)
+            res.send('sucess')
 
         }catch(e){
             console.error(e)

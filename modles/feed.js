@@ -11,6 +11,15 @@ async function getArticleColletion(){
     }
 }
 
+async function getCommentColletion(){
+    try{
+        const client = await conn 
+        return client.db("express").collection("comment");
+    }catch(e){
+        console.error(e)
+    }
+}
+
 export async function getAllArticles(){
     try{
         const articleCollection = await getArticleColletion()
@@ -27,11 +36,22 @@ export async function getAllArticles(){
                 articleCursor[i]['imgs']= fileName
             }
         }
-        //console.log(articleCursor)
         return articleCursor      
     }
     catch(e){
         console.error(e)
+    }
+}
+
+export async function insertComments(data){
+    try{
+        const commentCollection = await getCommentColletion()
+        await commentCollection.insertOne({
+            ...data,
+            reg_dt : new Date()
+        })
+    }catch(e){
+
     }
 }
 

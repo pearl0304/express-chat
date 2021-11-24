@@ -42,10 +42,10 @@
         </div>
     </div>
     <!-- 댓글 입력창 -->
-    <form class="comment-form" name="comment" action="/feed/comment">
-        <input class="comt-tf" type="text" placeholder="Write comment.">
-        <button type="submit" class="comt-btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
-    </form>
+    <div class="comment-form">
+        <input class="comt-tf" type="text" name="comment" placeholder="Write comment." index="<%=index%>">
+        <button type="button" class="comt-btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
+    </div>
 </div>
 <script>
 $(function(){
@@ -53,13 +53,28 @@ $(function(){
 })
 
 function checkCommentForm(){
-    $(".comment-form").on("submit",function(e){
+    $(".comt-btn").on("click",function(){
         const comment = $(".comt-tf").val()
+        const index = $(".comt-tf").attr("index")
+
         if(comment.length == 0){
             alert('Please write comment')
             return false
         }
+
+        $.ajax({
+            url:'/feed/comment',
+            type : 'post',
+             data : {index : index, comment:comment},
+             success : function(data){
+                $(".comt-tf").val('')
+             }
+        })
+
+        
     })
 }
+
+
 </script>
 <%- include('inc/tail.ejs')%>
