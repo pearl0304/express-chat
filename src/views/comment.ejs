@@ -6,7 +6,7 @@
             <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
         </a>
         <!-- tit -->
-        <h2 class="comment_h2">댓글<span class="comt-count">4</span></h2>
+        <h2 class="comment_h2">Comment<span class="comt-count">4</span></h2>
     </div>
 </header>
 
@@ -23,7 +23,6 @@
                     <h4>Comet_joy</h4>
                     <p class="time writer-time">5분전</p>
                 </div>
-
 
                 <span>게시물 내용이 나오는 곳 입니다.</span>
                 <span class="more">
@@ -43,9 +42,24 @@
         </div>
     </div>
     <!-- 댓글 입력창 -->
-    <form class="comment-form">
-        <input class="comt-tf" type="text" placeholder="댓글을 입력하세요.">
-        <button type="button" class="comt-btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
+    <form class="comment-form" name="comment" action="/feed/comment">
+        <input class="comt-tf" type="text" placeholder="Write comment.">
+        <button type="submit" class="comt-btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
     </form>
 </div>
+<script>
+$(function(){
+    checkCommentForm()  
+})
+
+function checkCommentForm(){
+    $(".comment-form").on("submit",function(e){
+        const comment = $(".comt-tf").val()
+        if(comment.length == 0){
+            alert('Please write comment')
+            return false
+        }
+    })
+}
+</script>
 <%- include('inc/tail.ejs')%>
