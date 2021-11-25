@@ -29,7 +29,7 @@
                 </div>
                 <div class="user-prf">
                     <h4><%=articles[i]['user_nick']%></h4>
-                    <p class="time">5분전</p>
+                    <p class="time"><%=articles[i]['reg_dt']%></p>
                 </div>
                 <!-- 제어 및 설정 ico -->
                 <div class="control">
@@ -61,7 +61,7 @@
                     <li class="comment">
                         <a href="/feed/comment/:<%=articles[i]['index']%>">
                             <img src="/public/images/imagesK/comment.svg">
-                            <span>4</span>
+                            <span><%=articles[i]['commentsCount']%></span>
                         </a>
                     </li>
                     <li class="like">

@@ -25,8 +25,13 @@ export async function findAllArticles(){
         const articleCollection = await getArticleColletion()
         const articleCursor = await articleCollection.find().sort({"reg_dt":-1}).limit(20).toArray()
         for(let i=0; i<articleCursor.length; i++){
+            
             const profile = await findProfile(articleCursor[i]['user_id'])
-            articleCursor[i]['profile'] = profile 
+            articleCursor[i]['profile'] = profile
+
+            const commentsCount = await getCommentCount(Number(articleCursor[i]['index']))
+            articleCursor[i]['commentsCount'] = commentsCount
+
             if(articleCursor[i]['fileNames']){
                 const fileName = []
                 const fileNames = articleCursor[i]['fileNames']
@@ -86,7 +91,7 @@ export async function insertComments(data){
     }
 }
 
-export async function getComment(index){
+export async function getCommentCount(index){
     try{
         const commentCollection = await getCommentColletion()
         const commentCount = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).count()

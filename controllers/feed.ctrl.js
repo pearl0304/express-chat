@@ -1,7 +1,7 @@
 import chalk from "chalk"
 import {findProfile} from "../modles/user.js"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
-import { findAllArticles,insertComments,findArticle,findComments,getComment} from "../modles/feed.js"
+import { findAllArticles,insertComments,findArticle,findComments,getCommentCount} from "../modles/feed.js"
 import moment from "moment"
 export const feedController = {
 
@@ -47,7 +47,7 @@ export const feedController = {
                         user_nick : user_nick,
                         fileNames :fileNames,
                         text : '',
-                        reg_dt : new Date()
+                        reg_dt : new Date().toLocaleString()
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
@@ -144,7 +144,7 @@ export const feedController = {
                 reg_dt : reg_dt
             }
             await insertComments(insertData)
-            const commentCount = await getComment(index)
+            const commentCount = await getCommentCount(index)
 
             const sendData = {
                 user_nick : user_nick,
