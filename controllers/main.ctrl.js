@@ -6,7 +6,7 @@ export const mainController = {
     verifyToken : async(req,res,next)=>{ 
         try{
             const token = req.cookies['jwtToken']
-
+            
             if(!token){
                 res.render("main")
                 next()

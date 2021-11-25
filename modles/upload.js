@@ -107,7 +107,7 @@ export async function insertOnlyText(data){
         const articlesCollection = await getArticleColletion()
         await articlesCollection.insertOne({
             ...data,
-            reg_dt : new Date()
+            reg_dt : new Date().toLocaleString()
         })
 
     }catch(e){

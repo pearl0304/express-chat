@@ -36,21 +36,21 @@
         </div>
     </div>
 
-        <div class="comment inner">
-        <%for(let i=0; i<comments.length; i++){%>
-            <div class="user-img comment-user">
-                <%if (comments[i]['profile'] == ''){%>
-                    <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
-                <%}else{%>
-                    <img src="/uploads/profile/<%=comments[i]['profile']%>" alt="프로필이미지">
-                    <%}%>   
-                <span class="name"><%=comments[i]['user_nick']%></span>
-                <span class="txt"><%=comments[i]['comment']%></span>
-                <span class="time"><%=comments[i]['reg_dt']%></span>
-                <p class="reply"><a href="#">답글달기</a></p>
-            </div>
-        <%}%>   
+    <div class="comment inner">
+    <%for(let i=0; i<comments.length; i++){%>
+        <div class="user-img comment-user">
+            <%if (comments[i]['profile'] == ''){%>
+                <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+            <%}else{%>
+                <img src="/uploads/profile/<%=comments[i]['profile']%>" alt="프로필이미지">
+                <%}%>   
+            <span class="name"><%=comments[i]['user_nick']%></span>
+            <span class="txt"><%=comments[i]['comment']%></span>
+            <span class="time"><%=comments[i]['reg_dt']%></span>
+            <p class="reply"><a href="#">답글달기</a></p>
         </div>
+    <%}%>   
+    </div>
 
     <!-- 댓글 입력창 -->
     <div class="comment-form">

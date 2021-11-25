@@ -784,8 +784,8 @@ ul.tabs-ico li.current{
 }
 .inner{
     /* position:absolute; */
-    /* width:100%; */
-    /* height: 100%; */
+    width:100%;
+    height: 100%;
     margin-left: 55px;
 }
 .feed-con img{

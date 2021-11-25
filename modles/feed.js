@@ -80,7 +80,6 @@ export async function insertComments(data){
         const commentCollection = await getCommentColletion()
         await commentCollection.insertOne({
             ...data,
-            reg_dt : new Date()
         })
     }catch(e){
 

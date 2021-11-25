@@ -2,6 +2,7 @@ import chalk from "chalk"
 import {findProfile} from "../modles/user.js"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
 import { findAllArticles,insertComments,findArticle,findComments} from "../modles/feed.js"
+import moment from "moment"
 export const feedController = {
 
     getFeedParm : (req,res)=>{
@@ -130,6 +131,7 @@ export const feedController = {
             const user_nick = req.body.userData['user_nick']
             const comment = req.body.comment
             const index = req.body.index
+            const reg_dt = new Date().toLocaleString()
 
             const profile = await findProfile(user_id)
            
@@ -139,9 +141,9 @@ export const feedController = {
                 articleIndex : Number(index),
                 commentIndex : Math.random(),
                 comment : comment,
-                profile: profile
+                profile: profile,
+                reg_dt : reg_dt
             }
-
             await insertComments(data)
             res.send(data)
 
