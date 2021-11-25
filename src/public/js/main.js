@@ -9,8 +9,15 @@ function validation(){
 
     $("input[name=user_id]").keyup(()=>{
         const user_id = $("input[name=user_id]").val()
-        if(pattern_spc.test(user_id)){alert('Special characters cannot be used'); return false}
-        if(pattern_kor.test(user_id)){alert('Please enter your ID in English'); return false}
+        if(pattern_spc.test(user_id)){
+            alert('Special characters cannot be used')
+            $("input[name=user_id]").val('')    
+            return false
+        }
+        if(pattern_kor.test(user_id)){
+            alert('Please enter your ID in English')
+            $("input[name=user_id]").val('')
+            return false}
     })
 }
 
