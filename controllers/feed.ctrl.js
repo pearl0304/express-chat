@@ -1,7 +1,7 @@
 import chalk from "chalk"
 import {findProfile} from "../modles/user.js"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
-import { findAllArticles,insertComments,findArticle,findComments} from "../modles/feed.js"
+import { findAllArticles,insertComments,findArticle,findComments,getComment} from "../modles/feed.js"
 import moment from "moment"
 export const feedController = {
 
@@ -117,7 +117,6 @@ export const feedController = {
 
             const article = await findArticle(index)
             const comments = await findComments(index)
-  
             res.render('comment',{ index, article, comments})
 
         }catch(e){
@@ -130,12 +129,12 @@ export const feedController = {
             const user_id = req.body.userData['user_id']
             const user_nick = req.body.userData['user_nick']
             const comment = req.body.comment
-            const index = req.body.index
+            const index = Number(req.body.index)
             const reg_dt = new Date().toLocaleString()
 
             const profile = await findProfile(user_id)
            
-            const data = {
+            const insertData = {
                 user_id : user_id,
                 user_nick : user_nick,
                 articleIndex : Number(index),
@@ -144,8 +143,17 @@ export const feedController = {
                 profile: profile,
                 reg_dt : reg_dt
             }
-            await insertComments(data)
-            res.send(data)
+            await insertComments(insertData)
+            const commentCount = await getComment(index)
+
+            const sendData = {
+                user_nick : user_nick,
+                profile: profile,
+                comment : comment,
+                reg_dt : reg_dt,
+                count :commentCount, 
+            }
+            res.send(sendData)
 
         }catch(e){
             console.error(e)

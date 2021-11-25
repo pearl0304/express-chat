@@ -61,7 +61,7 @@ export async function findComments(index){
         const commentCollection = await getCommentColletion()
         const commentCursor = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).limit(10).toArray()
         const commentCount = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).count()
-        commentCursor['count'] = commentCount
+        commentCursor['count'] = Number(commentCount)
 
         for(let i=0; i<commentCursor.length; i++){
             const profile = await findProfile(commentCursor[i]['user_id'])
@@ -83,6 +83,17 @@ export async function insertComments(data){
         })
     }catch(e){
 
+    }
+}
+
+export async function getComment(index){
+    try{
+        const commentCollection = await getCommentColletion()
+        const commentCount = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).count()
+        return commentCount
+
+    }catch(e){
+        console.error(e)
     }
 }
 

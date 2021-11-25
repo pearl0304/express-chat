@@ -18,7 +18,6 @@ function insertComment(){
         type : 'post',
             data : {index : index, comment:comment},
             success : function(data){
-                console.log(data)
                 let imgLink =''
                 if(data['profile']==''){
                     imgLink =`<img src="/public/images/imagesK/profile.svg" alt="프로필이미지">`
@@ -34,7 +33,9 @@ function insertComment(){
                     <p class="reply"><a href="#">답글달기</a></p>
                 </div>
             `)
-            $(".comt-tf").val('')
+            $(".comt-tf").val('')     
+            $(".comt-count").html('')
+            $(".comt-count").append(`${data['count']}`)
             }
     })
 }
