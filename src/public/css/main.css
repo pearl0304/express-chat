@@ -146,7 +146,7 @@ input#avatar{
 }
 .user-prf{
     flex:1;
-    margin-left:5px;
+    margin-left:10px;
 }
 .user-prf h4{
     font-size: 13px;
@@ -250,7 +250,7 @@ input#avatar{
     font-size: 12px;
 }
 .comment{
-    padding: 15px 0;
+    padding: 8px 0;
     /* border-bottom: 1px solid rgba(51,51,51,0.05); */
 }
 .comment{}
@@ -260,6 +260,7 @@ input#avatar{
 
 /* common */
 .name{
+    margin-left: 5px;
     font-size:13px;
     font-weight: 700;
 }
@@ -268,7 +269,10 @@ input#avatar{
     font-size:11px;
     color:rgba(51, 51, 51, 0.3);
 }
-.reply a,.more a{color:rgba(51, 51, 51, 0.3);}
+.reply a,.more a{
+    color:rgba(51, 51, 51, 0.3);
+    margin-left: 5px;
+}
 .time{
     margin-top: 2px;
     font-size:11px;
@@ -780,7 +784,7 @@ ul.tabs-ico li.current{
 }
 .inner{
     /* position:absolute; */
-    width:100%;
+    /* width:100%; */
     /* height: 100%; */
     margin-left: 55px;
 }

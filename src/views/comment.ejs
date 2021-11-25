@@ -2,11 +2,11 @@
  <!-- header -->
  <header id="header">
     <div class="hd-line">
-        <a href="/feed">
+        <a href="/feed/:<%=article['user_id']%>">
             <img src="/public/images/imagesK/backBtn.svg" alt="뒤로가기 버튼" class="back-ico">
         </a>
         <!-- tit -->
-        <h2 class="comment_h2">Comment<span class="comt-count">4</span></h2>
+        <h2 class="comment_h2">Comment<span class="comt-count"><%=comments['count']%></span></h2>
     </div>
 </header>
 
@@ -15,16 +15,20 @@
         <!-- 작성자 정보-->
         <div class="writer">
             <div class="user-img">
-                <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                <%if(article['profile'] == ''){%>
+                    <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                <%}else{%>
+                    <img src="/uploads/profile/<%=article['profile']%>" alt="프로필이미지">
+                <%}%>
             </div>
 
             <div class="user-prf">
                 <div class="user-inf">
-                    <h4>Comet_joy</h4>
-                    <p class="time writer-time">5분전</p>
+                    <h4><%=article['user_nick']%></h4>
+                    <p class="time writer-time"><%=article['reg_dt']%></p>
                 </div>
 
-                <span>게시물 내용이 나오는 곳 입니다.</span>
+                <span><%=article['text']%></span>
                 <span class="more">
                 <a href="#">더 보기</a>
             </span>
@@ -32,59 +36,28 @@
         </div>
     </div>
 
-    <div class="comment inner">
-        <div class="user-img comment-user">
-            <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
-            <span class="name">Comet_joy</span>
-            <span class="txt">댓글을 달았어요 :)♥</span>
-            <span class="time">15초전</span>
-            <p class="reply"><a href="#">답글달기</a></p>
+        <div class="comment inner">
+        <%for(let i=0; i<comments.length; i++){%>
+            <div class="user-img comment-user">
+                <%if (comments[i]['profile'] == ''){%>
+                    <img src="/public/images/imagesK/profile.svg" alt="프로필이미지">
+                <%}else{%>
+                    <img src="/uploads/profile/<%=comments[i]['profile']%>" alt="프로필이미지">
+                    <%}%>   
+                <span class="name"><%=comments[i]['user_nick']%></span>
+                <span class="txt"><%=comments[i]['comment']%></span>
+                <span class="time"><%=comments[i]['reg_dt']%></span>
+                <p class="reply"><a href="#">답글달기</a></p>
+            </div>
+        <%}%>   
         </div>
-    </div>
+
     <!-- 댓글 입력창 -->
     <div class="comment-form">
         <input class="comt-tf" type="text" name="comment" placeholder="Write comment." index="<%=index%>">
         <button type="button" class="comt-btn" name="comment_btn"><img src="/public/images/imagesK/send.svg" alt="프로필이미지"></button>
-    </div>
+    </div> 
 </div>
-<script>
-$(function(){
-    insertComment()  
-    commentEnter ()
-})
 
-$(document).on("click","button[name=comment_btn]",function () {insertComment();})
-
-function insertComment(){
-
-    const comment = $(".comt-tf").val()
-    const index = $(".comt-tf").attr("index")
-
-    if(comment.length == 0){
-        alert('Please write comment')
-        return false
-    }
-
-    $.ajax({
-        url:'/feed/comment',
-        type : 'post',
-            data : {index : index, comment:comment},
-            success : function(data){
-            $(".comt-tf").val('')
-            }
-    })
-}
-
-function commentEnter (){
-    $("input[name=comment]").keydown(function (key) {
-        if(key.keyCode == 13 ) {
-            insertComment()
-        }
-    })
-    }
-
-
-
-
-</script>
+<script src="/public/js/comment.js"></script>
 <%- include('inc/tail.ejs')%>

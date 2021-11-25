@@ -1,6 +1,7 @@
 import chalk from "chalk"
+import {findProfile} from "../modles/user.js"
 import { insertImages,findImages,deleteSelectImage,findFinalImages,insertText,insertOnlyText} from "../modles/upload.js"
-import { getAllArticles,insertComments} from "../modles/feed.js"
+import { findAllArticles,insertComments,findArticle,findComments} from "../modles/feed.js"
 export const feedController = {
 
     getFeedParm : (req,res)=>{
@@ -9,7 +10,7 @@ export const feedController = {
 
     getFeed : async(req,res)=>{
         try{
-            const articles = await getAllArticles()  
+            const articles = await findAllArticles()  
             res.render('feed',{articles})
         }
        catch(e){
@@ -109,11 +110,14 @@ export const feedController = {
     },
     getComment : async (req,res)=>{
         try{
-            // 댓글 목록 가져오기
+            
             const indexParams= req.params.index
             const index = Number(indexParams.slice(1,indexParams.length)) 
 
-            res.render('comment',{index})
+            const article = await findArticle(index)
+            const comments = await findComments(index)
+  
+            res.render('comment',{ index, article, comments})
 
         }catch(e){
             console.error(e)
@@ -126,17 +130,20 @@ export const feedController = {
             const user_nick = req.body.userData['user_nick']
             const comment = req.body.comment
             const index = req.body.index
+
+            const profile = await findProfile(user_id)
            
             const data = {
                 user_id : user_id,
                 user_nick : user_nick,
                 articleIndex : Number(index),
                 commentIndex : Math.random(),
-                comment : comment
+                comment : comment,
+                profile: profile
             }
 
             await insertComments(data)
-            res.send('sucess')
+            res.send(data)
 
         }catch(e){
             console.error(e)

@@ -20,7 +20,7 @@ async function getCommentColletion(){
     }
 }
 
-export async function getAllArticles(){
+export async function findAllArticles(){
     try{
         const articleCollection = await getArticleColletion()
         const articleCursor = await articleCollection.find().sort({"reg_dt":-1}).limit(20).toArray()
@@ -43,6 +43,38 @@ export async function getAllArticles(){
     }
 }
 
+export async function findArticle(index){
+    try{
+        const articleCollection = await getArticleColletion()
+        const artilceCursor = await articleCollection.findOne({index:index})
+        const profile = await findProfile(artilceCursor['user_id'])
+        artilceCursor['profile'] = profile 
+        return artilceCursor
+            
+    }catch(e){
+        console.error(e)
+    }
+}
+
+export async function findComments(index){
+    try{
+        const commentCollection = await getCommentColletion()
+        const commentCursor = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).limit(10).toArray()
+        const commentCount = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).count()
+        commentCursor['count'] = commentCount
+
+        for(let i=0; i<commentCursor.length; i++){
+            const profile = await findProfile(commentCursor[i]['user_id'])
+            commentCursor[i]['profile'] = profile 
+        }
+
+        return commentCursor
+
+    }catch(e){
+        console.error(e)
+    }
+}
+
 export async function insertComments(data){
     try{
         const commentCollection = await getCommentColletion()
@@ -54,4 +86,7 @@ export async function insertComments(data){
 
     }
 }
+
+
+
 
