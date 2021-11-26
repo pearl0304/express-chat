@@ -1,9 +1,8 @@
 $(function(){
-    commentEnter ()    
+    commentEnter ()  
 })
 
 $(document).on("click","button[name=comment_btn]",function () {insertComment();})
-
 function insertComment(){
     const comment = $(".comt-tf").val()
     const index = $(".comt-tf").attr("index")

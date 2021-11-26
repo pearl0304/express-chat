@@ -13,6 +13,7 @@ export const feedController = {
         try{
             const articles = await findAllArticles()  
             res.render('feed',{articles})
+           
         }
        catch(e){
            console.error(e)
@@ -47,7 +48,7 @@ export const feedController = {
                         user_nick : user_nick,
                         fileNames :fileNames,
                         text : '',
-                        reg_dt : new Date().toLocaleString()
+                        reg_dt : new Date()
                     }        
                     await insertImages(data)
                     const selectedImages = await findImages(data)
@@ -130,7 +131,7 @@ export const feedController = {
             const user_nick = req.body.userData['user_nick']
             const comment = req.body.comment
             const index = Number(req.body.index)
-            const reg_dt = new Date().toLocaleString()
+            const reg_dt = new Date()
 
             const profile = await findProfile(user_id)
            
