@@ -26,7 +26,7 @@
     display:flex;
     justify-content: space-around;
     align-items: center;
-    background:rgba(255, 255, 255, 0.8);
+    background:rgb(255, 255, 255);
 }
 .tab-bar span{
     width: 20px;

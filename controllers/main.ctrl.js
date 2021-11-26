@@ -3,23 +3,6 @@ import dotenv from "dotenv"
 dotenv.config()
 
 export const mainController = {
-    verifyToken : async(req,res,next)=>{ 
-        try{
-            const token = req.cookies['jwtToken']
-            
-            if(!token){
-                res.render("main")
-                next()
-            }else{
-                next()
-            }
-
-        }catch(e){
-            console.error(e)  
-            res.render("main")   
-        }         
-    },
-
     stayUserFeed : async(req,res)=>{
     
         try{
@@ -46,12 +29,10 @@ export const mainController = {
                 req.body.userData = tokenData
                 next()
             }else{
-                res.render("main")
-                next()
+                res.render('process/register_process',{result : "TOKEN_EXPIRE"})
             }
 
         }catch(e){
-            console.error(e)
             res.render("main")
         }
     }

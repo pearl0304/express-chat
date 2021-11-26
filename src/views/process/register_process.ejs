@@ -12,7 +12,6 @@
     </script>
 <%}%>
 
-
 <%if (result == 'ERROR'){%>
     <script>
         alert('An error has occurred')
@@ -42,7 +41,6 @@
     </script>
 <%}%>
 
-
 <%if (result == 'WRONG_PW'){%>
     <script>
         alert('The password you enter is wrong. Please check your password')
@@ -50,6 +48,12 @@
     </script>
 <%}%>
 
+<%if (result == 'TOKEN_EXPIRE'){%>
+    <script>
+        alert('Token was expired. Please login again')
+        location.href='/'
+    </script>
+<%}%>
 
 <% if (result == "SUCCESS"){%>
     <script>

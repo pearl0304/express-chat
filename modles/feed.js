@@ -64,7 +64,7 @@ export async function findArticle(index){
 export async function findComments(index){
     try{
         const commentCollection = await getCommentColletion()
-        const commentCursor = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).limit(14).toArray()
+        const commentCursor = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).limit(11).toArray()
         const commentCount = await commentCollection.find({articleIndex: index}).sort({"reg_dt":-1}).count()
         commentCursor['count'] = Number(commentCount)
 

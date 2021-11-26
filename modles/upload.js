@@ -18,8 +18,6 @@ export async function insertImages(data){
        await articlesCollection.insertOne({
            ...data,          
        })
-        console.log('insert Images 성공')
-
     }catch(e){
         console.error(e)
     }

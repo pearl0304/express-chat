@@ -34,7 +34,7 @@ export const feedController = {
                     articles[i]['diff'] = `${diffMinutes}minutes ago`
                 }else if(diffHours >0 && diffHours <24){
                     articles[i]['diff'] = `${diffHours}hours ago`
-                }else if(diffDay >0 && diffDay <31){
+                }else if(diffDay >0 && diffDay <=31){
                     articles[i]['diff'] = `${diffDay}days ago`
                 }else if (diffMonth >0 || diffYear >0){
                     articles[i]['diff'] = reg_dt.toDateString()  
@@ -168,7 +168,7 @@ export const feedController = {
                 article['diff'] = `${diffMinutes}minutes ago`
             }else if(diffHours >0 && diffHours <24){
                 article['diff'] = `${diffHours}hours ago`
-            }else if(diffDay >0 && diffDay <31){
+            }else if(diffDay >0 && diffDay <=31){
                 article['diff'] = `${diffDay}days ago`
             }else if (diffMonth >0 || diffYear >0){
                 article['diff'] = article_reg.toDateString()  
@@ -194,7 +194,7 @@ export const feedController = {
                     comments[i]['diff'] = `${diffMinutes}minutes ago`
                 }else if(diffHours >0 && diffHours <24){
                     comments[i]['diff'] = `${diffHours}hours ago`
-                }else if(diffDay >0 && diffDay <31){
+                }else if(diffDay >0 && diffDay <=31){
                     comments[i]['diff'] = `${diffDay}days ago`
                 }else if (diffMonth >0 || diffYear >0){
                     comments[i]['diff'] = reg_dt.toDateString()  

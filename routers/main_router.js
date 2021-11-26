@@ -4,7 +4,7 @@ import user from "./user_router.js";
 import feed from "./feed_router.js"
 const router = Router();
 
-router.get('/',mainController.getTokendata,mainController.verifyToken,mainController.stayUserFeed)
+router.get('/',mainController.getTokendata,mainController.stayUserFeed)
 router.use('/user',user)
 router.use('/feed',feed)
 

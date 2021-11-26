@@ -290,6 +290,7 @@ input#avatar{
     padding: 0 16px;
     width: 100%;
     box-sizing: border-box;
+    background-color: white;
 }
 .comt-tf{
     width: 100%;
@@ -783,10 +784,11 @@ ul.tabs-ico li.current{
     margin-right: 3px;
 }
 .inner{
-    /* position:absolute; */
+    position:absolute;
     width:100%;
     height: 100%;
     margin-left: 17px;
+    margin-top: -10px;
 }
 .feed-con img{
     display:block;
@@ -829,4 +831,7 @@ ul.tabs-ico li.current{
     background:rgba(51, 51, 51, 0.1);
     color: rgba(51, 51, 51, 0.7);
 }
-.user-img,.user-btn{/* flex:1; */}
+.user-img,.user-btn{
+    /* flex:1; */
+    margin-bottom: 9px;
+}
