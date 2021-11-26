@@ -39,7 +39,7 @@ export async function findAllArticles(){
                     fileName.push(fileNames[j]['fileName'])
                 }
                 articleCursor[i]['imgs']= fileName
-            }
+            }            
         }
         return articleCursor      
     }

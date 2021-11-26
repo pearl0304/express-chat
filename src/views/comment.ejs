@@ -25,7 +25,7 @@
             <div class="user-prf">
                 <div class="user-inf">
                     <h4><%=article['user_nick']%></h4>
-                    <p class="time writer-time"><%=article['reg_dt']%></p>
+                    <p class="time writer-time"><%=article['diff']%></p>
                 </div>
 
                 <span><%=article['text']%></span>
@@ -46,7 +46,7 @@
                 <%}%>   
             <span class="name"><%=comments[i]['user_nick']%></span>
             <span class="txt"><%=comments[i]['comment']%></span>
-            <span class="time"><%=comments[i]['reg_dt']%></span>
+            <span class="time"><%=comments[i]['diff']%></span>
             <p class="reply"><a href="#">답글달기</a></p>
         </div>
     <%}%>   

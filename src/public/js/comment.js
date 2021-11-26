@@ -28,7 +28,7 @@ function insertComment(){
                      ${imgLink}
                     <span class="name">${data['user_nick']}</span>
                     <span class="txt">${comment}</span>
-                    <span class="time">${data['reg_dt']}</span>
+                    <span class="time">now</span>
                     <p class="reply"><a href="#">답글달기</a></p>
                 </div>
             `)

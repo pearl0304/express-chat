@@ -11,7 +11,35 @@ export const feedController = {
 
     getFeed : async(req,res)=>{
         try{
-            const articles = await findAllArticles()  
+            const articles = await findAllArticles()
+            const now = moment(new Date())
+
+            // caculate date            
+            for(let i=0; i<articles.length; i++){
+                const reg_dt = articles[i]['reg_dt']
+                
+                const mom_reg = moment(articles[i]['reg_dt'])
+                const diffYear = now.diff(mom_reg,'years')
+                const diffMonth = now.diff(mom_reg,'months')
+                const diffDay = now.diff(mom_reg,'days')
+                const diffHours = now.diff(mom_reg,'hours')
+                const diffMinutes = now.diff(mom_reg,'minutes')
+                const diffSecond = now.diff(mom_reg,'seconds')
+
+                if(diffSecond >=0 && diffSecond <=5 ){
+                    articles[i]['diff'] = `now`
+                }else if(diffSecond >6 && diffSecond <60){
+                    articles[i]['diff'] = `${diffSecond}seconds ago` 
+                }else if(diffMinutes >0 && diffMinutes <60){
+                    articles[i]['diff'] = `${diffMinutes}minutes ago`
+                }else if(diffHours >0 && diffHours <24){
+                    articles[i]['diff'] = `${diffHours}hours ago`
+                }else if(diffDay >0 && diffDay <31){
+                    articles[i]['diff'] = `${diffDay}days ago`
+                }else if (diffMonth >0 || diffYear >0){
+                    articles[i]['diff'] = reg_dt.toDateString()  
+                }
+            }            
             res.render('feed',{articles})
            
         }
@@ -118,6 +146,61 @@ export const feedController = {
 
             const article = await findArticle(index)
             const comments = await findComments(index)
+
+            // caculate date  
+            const now = moment(new Date())
+            
+            const article_reg = article['reg_dt']
+            const mom_article_reg = moment(article['reg_dt'])
+
+            const diffYear = now.diff(mom_article_reg,'years')
+            const diffMonth = now.diff(mom_article_reg,'months')
+            const diffDay = now.diff(mom_article_reg,'days')
+            const diffHours = now.diff(mom_article_reg,'hours')
+            const diffMinutes = now.diff(mom_article_reg,'minutes')
+            const diffSecond = now.diff(mom_article_reg,'seconds')
+  
+            if(diffSecond >=0 && diffSecond <=5 ){
+                article['diff'] = `now`
+            }else if(diffSecond >6 && diffSecond <60){
+                article['diff'] = `${diffSecond} seconds ago` 
+            }else if(diffMinutes >0 && diffMinutes <60){
+                article['diff'] = `${diffMinutes}minutes ago`
+            }else if(diffHours >0 && diffHours <24){
+                article['diff'] = `${diffHours}hours ago`
+            }else if(diffDay >0 && diffDay <31){
+                article['diff'] = `${diffDay}days ago`
+            }else if (diffMonth >0 || diffYear >0){
+                article['diff'] = article_reg.toDateString()  
+            }
+
+            // comment
+            for(let i=0; i<comments.length; i++){
+                const reg_dt = comments[i]['reg_dt']
+                
+                const mom_reg = moment(comments[i]['reg_dt'])
+                const diffYear = now.diff(mom_reg,'years')
+                const diffMonth = now.diff(mom_reg,'months')
+                const diffDay = now.diff(mom_reg,'days')
+                const diffHours = now.diff(mom_reg,'hours')
+                const diffMinutes = now.diff(mom_reg,'minutes')
+                const diffSecond = now.diff(mom_reg,'seconds')
+
+                if(diffSecond >=0 && diffSecond <=5 ){
+                    comments[i]['diff'] = `now`
+                }else if(diffSecond >6 && diffSecond <60){
+                    comments[i]['diff'] = `${diffSecond} seconds ago` 
+                }else if(diffMinutes >0 && diffMinutes <60){
+                    comments[i]['diff'] = `${diffMinutes}minutes ago`
+                }else if(diffHours >0 && diffHours <24){
+                    comments[i]['diff'] = `${diffHours}hours ago`
+                }else if(diffDay >0 && diffDay <31){
+                    comments[i]['diff'] = `${diffDay}days ago`
+                }else if (diffMonth >0 || diffYear >0){
+                    comments[i]['diff'] = reg_dt.toDateString()  
+                }
+            } 
+
             res.render('comment',{ index, article, comments})
 
         }catch(e){
